@@ -82,7 +82,7 @@ Integrantes del equipo:
 Proyecto realizado como parte de una actividad académica de la carrera de Ingeniería en Informática 💻
 Gracias por revisar este proyecto 🚀
 
-```
+---
 
---- 
+
 

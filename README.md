@@ -51,7 +51,7 @@
 ## 🛠️ Tecnologías Utilizadas
 
 * HTML5 + CSS3 (estructura y estilo)
-* Figma (diseño del prototipo previo)
+* Stitch (diseño del prototipo previo)
 * GitHub (repositorio de versión)
 
 ---
@@ -70,7 +70,16 @@ Las vistas previas de cada sección están disponibles en la carpeta `/images`.
 
 ## 🙌 Créditos
 
-Desarrollado por estudiantes de Informática para fines de evaluación académica.
+
+Integrantes del equipo:
+
+* 🎓 Cristobal Cesped — 202173054-0
+
+* 🎓 Carlos Ramírez — 202192826-K
+
+* 🎓 Baltazar Portilla — 202173112-1
+
+Proyecto realizado como parte de una actividad académica de la carrera de Ingeniería en Informática 💻
 Gracias por revisar este proyecto 🚀
 
 ```

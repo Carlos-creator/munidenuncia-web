@@ -88,7 +88,7 @@ Integrantes del equipo:
 
 * 🎓 Baltazar Portilla — 202173112-1
 
-Proyecto realizado como parte de una actividad académica de la carrera de Ingeniería en Informática 💻
+Proyecto realizado como parte de una actividad académica de la carrera de Ingeniería Civil en Informática 💻
 Gracias por revisar este proyecto 🚀
 
 ---

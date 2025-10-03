@@ -68,6 +68,15 @@ Las vistas previas de cada sección están disponibles en la carpeta `/images`.
 
 ---
 
+## 🌍 Acceso al prototipo en línea
+
+Puedes acceder al prototipo web de MuniDenuncia desde el siguiente enlace:
+
+👉 [munidenuncia-web.netlify.app](https://munidenuncia-web.netlify.app/templates/pagina_inicio)
+
+No requiere instalación ni registro. Ideal para sesiones de testing remoto o demostraciones rápidas.
+
+
 ## 🙌 Créditos
 
 

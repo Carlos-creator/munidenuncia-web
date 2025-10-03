@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Stitch Design</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#13a4ec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101c22",
+            },
+            fontFamily: {
+              display: ["Public Sans"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body class="font-display">
+<div class="flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 dark:border-primary/30 px-10 py-4">
+<div class="flex items-center gap-4">
+<a href="pagina_inicio.html" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
+<div class="size-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold">CityConnect</h2>
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="pagina_inicio.html">Inicio</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="ver_denuncias.html">Reportes</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="seguimiento_personal.html">Mi Perfil</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 text-gray-700 dark:text-gray-300 transition-colors">
+<span class="material-symbols-outlined text-xl">
+              notifications
+            </span>
+</button>
+<div class="size-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnbOUN99sXM9ihdVDUJkP7ChABcLk2rv7e3xmk8LcG_CeNtTq4DGwg_kx3czRKU17eOY8jKUnAXGCASjeeoN0wXSJPXcY6eWoyfQaWuAGq4P0oZX8DKMBpjPR9J9LvRhDW1TjAnk5bre7EepN_4uWOCuaj8deP3v6-M8SfG8equpdUVJ6PiPySL1X2uNmv-Q78sBVRThk0tgB_BAGy9ev3DZSPmMaaN_-9D7rwILxy8WJEjMVM06LP5IkyMD4KhBEqQXkYEfOFeKyQ");'></div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-8 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-5xl space-y-8">
+<div class="flex items-center gap-2 text-sm font-medium">
+<a class="text-primary/80 hover:text-primary" href="ver_denuncias.html">Reportes</a>
+<span class="material-symbols-outlined text-sm text-gray-500 dark:text-gray-400">
+              chevron_right
+            </span>
+<span class="text-gray-600 dark:text-gray-400">Detalle del Reporte</span>
+</div>
+<div class="bg-white dark:bg-background-dark/50 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+<div class="p-6 md:p-8">
+<div class="flex flex-col md:flex-row md:items-start md:gap-8">
+<div class="flex-1">
+<span class="inline-block bg-primary/10 text-primary text-xs font-semibold px-2.5 py-1 rounded-full mb-2">EN PROCESO</span>
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+                    Reporte #12345
+                  </h1>
+<p class="mt-2 text-gray-500 dark:text-gray-400">
+                    Calle Principal, esquina con Avenida Central
+                  </p>
+</div>
+<div class="mt-4 md:mt-0 flex items-center gap-2 text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-lg"> thumb_up </span>
+<span class="font-semibold">15 Apoyos</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-px">
+<div class="w-full aspect-w-16 aspect-h-9">
+<div class="bg-cover bg-center w-full h-full" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDRcg0_m6mi0DETGOfJoDLc6z4PqLCfOe-qHIoWcXvycOkEqzvRjqprEi_aMigRGrRVXRS68ifR6kdAeYi6zbWTsymRSqLpP9ecPUNa24QVFBDh1rngOuWF2CvRFrNECjtlpZKj9C_mef7EJnrLne-lhqq1lp0pOlAOQN2AXXPsP9M9xPpwwQzQIf9gpC4BCl7K-lh2FOP3vaX21GMDsW_5ZQf3F1hOWgV6OT26mQp_uHw3LjfQdGT1eKPhPUp5E9N9a4tn-50zMlex");'></div>
+</div>
+<div class="w-full aspect-w-16 aspect-h-9">
+<div class="bg-cover bg-center w-full h-full" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfXeAKXDoRF679CNLwec2GCcig76l-tD8UZSS-Y9AKUHufTjP57qNwWNck6M6dxRxKl_KEOa0vvwvVKrutzRpGoPYVqU8KgMXt20x-ql-XIRFnCdHYlFEJWD9nqWAdr7UwFntrDrWbTcVLT1j731yf0nVq6Kax5lm0ypl8quJ8uBLzElJAi8esK2NKUZgirYxivxLYfQSpdbZL3cFcKnyIA2u94w4l2cTpZqq_VqLdvNMIyY9Gp_7crKsZi67tY874gt6EOcUWVnlN");'></div>
+</div>
+</div>
+<div class="p-6 md:p-8">
+<h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Detalles del Reporte
+              </h2>
+<div class="border-t border-gray-200 dark:border-gray-700 pt-4">
+<dl class="space-y-4">
+<div>
+<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      Descripción
+                    </dt>
+<dd class="mt-1 text-base text-gray-700 dark:text-gray-300">
+                      Un gran bache en la esquina de la Calle Principal y la
+                      Avenida Central representa un peligro para los conductores
+                      y peatones. Se solicita reparación urgente.
+                    </dd>
+</div>
+</dl>
+</div>
+</div>
+<div class="bg-gray-50 dark:bg-background-dark/30 px-6 py-4 flex justify-end">
+<button class="flex items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold shadow-sm hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined mr-2"> thumb_up </span>
+<span class="truncate">Apoyar Reporte</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

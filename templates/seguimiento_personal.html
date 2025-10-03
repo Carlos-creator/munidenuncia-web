@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CityConnect - Mis Reportes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13a4ec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101c22",
+          },
+          fontFamily: {
+            "display": ["Public Sans"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<div class="flex flex-col min-h-screen">
+<header class="bg-background-light dark:bg-background-dark/50 backdrop-blur-sm sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<a href="pagina_inicio.html" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
+<div class="text-primary size-7">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path></svg>
+</div>
+<h1 class="text-xl font-bold text-slate-900 dark:text-white">CityConnect</h1>
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="pagina_inicio.html">Inicio</a>
+<a class="text-sm font-bold text-primary dark:text-primary" href="ver_denuncias.html">Reportes</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors" href="seguimiento_personal.html">Mi Cuenta</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative rounded-full p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark focus:ring-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAShsY4gyQlkLnsv7JN1CvSfK_rNWFWrpkdffCnlQl_uwKJuBs6vTYACKUcNQoQl-33Rr27-1KOb-jXjGbIb2LGnoIG0V1fQXYGma-k4Gmr8ku-Ocqj7R-foaZorQu2JZkwpEFQTczCmXPe-q-VI1hpSp-7wXJ_IUSMPRYQQzZMfdgEkr6-uvmNLcgSEq4cv1KqtU4Ha0viqVp3KFQHY0I8nL136jbVvkKyrvz2vgJCJtxhD9EGTykA7aBAdS4jX1C9_RHC9N-pckNA");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+<div class="max-w-4xl mx-auto">
+<header class="mb-8">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Mis Reportes</h2>
+<p class="mt-2 text-base text-slate-500 dark:text-slate-400">Aquí puedes ver el estado de todas tus denuncias.</p>
+</div>
+<!-- Botón visible solo en desktop -->
+<a href="crear_denuncia.html" class="hidden md:flex bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-colors items-center gap-2">
+<span class="text-xl">+</span>
+Crear Denuncia
+</a>
+</div>
+</header>
+                <div id="reportes-container" class="space-y-6">
+                    <!-- Los reportes se cargarán dinámicamente aquí -->
+                </div>
+
+                <!-- Mensaje cuando no hay reportes -->
+                <div id="no-reportes" class="hidden text-center py-12">
+                    <div class="text-gray-400 text-6xl mb-4">📋</div>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No tienes reportes aún</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Crea tu primera denuncia para comenzar a hacer seguimiento.</p>
+                    <a href="crear_denuncia.html" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90">
+                        <span class="text-lg mr-2">+</span>
+                        Crear Primera Denuncia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Botón flotante para móviles -->
+<a href="crear_denuncia.html" class="md:hidden fixed bottom-6 right-6 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 z-50">
+<span class="text-lg font-bold">+</span>
+<span class="text-sm font-medium">Crear Denuncia</span>
+</a>
+
+<footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 mt-auto">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<p class="text-center text-sm text-slate-500 dark:text-slate-400">© 2024 CityConnect. Todos los derechos reservados.</p>
+</div>
+</footer>
+
+</div>
+
+<script>
+// Función para obtener nombre de zona formateado
+function getZonaNombre(zona) {
+    const zonas = {
+        'centro': 'Zona Centro',
+        'norte': 'Zona Norte', 
+        'sur': 'Zona Sur',
+        'este': 'Zona Este',
+        'oeste': 'Zona Oeste'
+    };
+    return zonas[zona] || 'Zona ' + zona;
+}
+
+// Función para obtener color del estado
+function getEstadoColor(estado, progreso) {
+    if (estado === 'Resuelto' || progreso === 100) {
+        return {
+            badge: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+            progress: 'bg-green-500',
+            text: 'text-green-600 dark:text-green-400'
+        };
+    } else if (estado === 'En Revisión' || progreso >= 50) {
+        return {
+            badge: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
+            progress: 'bg-primary',
+            text: 'text-slate-700 dark:text-slate-300'
+        };
+    } else {
+        return {
+            badge: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300',
+            progress: 'bg-amber-500',
+            text: 'text-amber-600 dark:text-amber-400'
+        };
+    }
+}
+
+// Función para crear HTML de una tarjeta de reporte
+function crearTarjetaReporte(reporte, esNuevo = false) {
+    const colores = getEstadoColor(reporte.estado, reporte.progreso);
+    
+    // Debug para ver qué imagen tenemos
+    console.log('Creando tarjeta para reporte:', reporte.id, 'Imagen:', !!reporte.imagen, reporte.imagen ? reporte.imagen.substring(0, 50) + '...' : 'Sin imagen');
+    
+    // Manejar correctamente las imágenes base64 y URLs normales
+    let imagenHtml;
+    if (reporte.imagen) {
+        if (reporte.imagen.startsWith('data:image/')) {
+            // Es una imagen base64 - usar img tag
+            imagenHtml = `<img src="${reporte.imagen}" alt="Imagen del reporte" class="w-full h-48 object-cover" onerror="console.log('Error cargando imagen base64')">`;
+        } else if (reporte.imagen.startsWith('http')) {
+            // Es una URL completa - usar background-image
+            imagenHtml = `<div class="w-full h-48 bg-cover bg-center" style="background-image: url('${reporte.imagen}');"></div>`;
+        } else {
+            // Fallback
+            imagenHtml = `<div class="w-full h-48 bg-cover bg-center bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                <span class="text-gray-500 dark:text-gray-400">Sin Imagen</span>
+            </div>`;
+        }
+    } else {
+        imagenHtml = `<div class="w-full h-48 bg-cover bg-center bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+            <span class="text-gray-500 dark:text-gray-400">Sin Imagen</span>
+        </div>`;
+    }
+    const zonaNombre = getZonaNombre(reporte.zona);
+
+    return `
+        <div class="bg-white dark:bg-background-dark/50 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300" data-id="${reporte.id}">
+            <div class="relative">
+                ${imagenHtml}
+                ${esNuevo ? `<button onclick="eliminarReporte('${reporte.id}')" class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full shadow-lg transition-colors" title="Eliminar reporte">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                </button>` : ''}
+            </div>
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-2">
+                    <p class="text-sm text-primary font-semibold">Reporte #${reporte.id}</p>
+                    <div class="flex items-center gap-2">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colores.badge}">${reporte.estado}</span>
+                        <div class="flex items-center gap-1 px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full">
+                            <span class="text-sm">👍</span>
+                            <span class="text-sm font-medium text-gray-600 dark:text-gray-300">${reporte.likes || 0}</span>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">${reporte.titulo}</h3>
+                <div class="mt-2 flex items-start gap-1">
+                    <span class="text-red-500 text-sm mt-0.5">📍</span>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">${reporte.direccion}</p>
+                </div>
+                <div class="mt-1 flex items-center gap-1">
+                    <span class="text-blue-500 text-sm">🗺️</span>
+                    <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">${zonaNombre}</span>
+                </div>
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Creado: ${reporte.fecha}</p>
+                <!-- Barra de progreso -->
+                <div class="mt-4 flex items-center gap-3">
+                    <div class="flex-1 bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                        <div class="${colores.progress} h-2 rounded-full" style="width: ${reporte.progreso}%"></div>
+                    </div>
+                    <span class="text-sm font-semibold ${colores.text}">${reporte.progreso}%</span>
+                </div>
+                <!-- Observaciones -->
+                <div class="mt-4 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                    <p class="text-sm text-slate-600 dark:text-slate-300"><span class="font-semibold">Observaciones:</span> ${reporte.observaciones}</p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Función para cargar y mostrar reportes
+function cargarReportes() {
+    const reportesGuardados = JSON.parse(localStorage.getItem('misReportes') || '[]');
+    
+    // Debug: mostrar reportes guardados
+    console.log('Reportes guardados en localStorage:', reportesGuardados);
+    reportesGuardados.forEach((reporte, index) => {
+        console.log(`Reporte ${index}:`, {
+            id: reporte.id,
+            titulo: reporte.titulo,
+            tieneImagen: !!reporte.imagen,
+            tipoImagen: reporte.imagen ? (reporte.imagen.startsWith('data:') ? 'base64' : 'url') : 'ninguna'
+        });
+    });
+    
+    const reportesEstaticos = [
+        {
+            id: 12345,
+            titulo: "Falta de Iluminación en Calle Principal",
+            direccion: "Av. Libertador 1250, entre Mitre y San Martín",
+            zona: "sur",
+            fecha: "15 de Julio, 2024",
+            estado: "En Revisión",
+            progreso: 60,
+            observaciones: "El reporte está en proceso de revisión por el departamento de obras públicas.",
+            likes: 24,
+            imagen: "https://lh3.googleusercontent.com/aida-public/AB6AXuBXXT1T1-VKJ2f74L-MAxKLcRKxOmE91kpVkfK_QqEnNUGeKF_tWvlCwCC1Cm6nmfAL5SsBQV8ImDGknNb05aBmxamqqtbq9FBA_Hdu8ZlsImI7Q3Lq1m0CsguNb2sJNhldYt_yzKDOVc9Pw0PKqqXrvZ1sAukGAn2Jg_mybeHVisv3uwbs7EbkOo-tpFQw7CsK2JS3iy-vn0UcIJdDQzL83C7bvj3k3KKCLs5uOmbKzzwGMnc2WZiT3-RqDcQBqTtttjfkE7t72mVF"
+        },
+        {
+            id: 67890,
+            titulo: "Baches en Avenida Central",
+            direccion: "Av. Central 3420, altura puente vehicular",
+            zona: "norte",
+            fecha: "20 de Junio, 2024",
+            estado: "Resuelto",
+            progreso: 100,
+            observaciones: "El reporte ha sido resuelto y cerrado. Se recomienda verificar la solución en el lugar.",
+            likes: 18,
+            imagen: "https://lh3.googleusercontent.com/aida-public/AB6AXuBjvx5e6dMxi1jFcu7D8TTNmBoOyEoIgKdqJzJcOoyLERYu1-UianSfw6zYpRVB2-0PeWrwaX6vJypnlXyIsjE1vZt4flKPouCcwZ42iFmVZiuy3oXhvTHIkoIpEn-Jch7h_dFgRf43ghqIseOiPUmByE2X3kmx9vJsuVAwKXKMUAqnDcb3E8d93z8OCTISBC7d1X9g5ycNL4CbQXh4YeTzu8TgzEQPOK7Ddpx0wZyoZ-W6zCcav3ZffYnBtVD6CwZ0FQQV9YAaX5DM"
+        },
+        {
+            id: 11223,
+            titulo: "Acumulación de Basura en Parque",
+            direccion: "Parque San Martín, sector juegos infantiles",
+            zona: "centro",
+            fecha: "5 de Mayo, 2024",
+            estado: "Pendiente",
+            progreso: 20,
+            observaciones: "El reporte está pendiente de asignación a un departamento específico.",
+            likes: 31,
+            imagen: "https://lh3.googleusercontent.com/aida-public/AB6AXuDQ52lzDw7GqGuVu1shcqrLfFesqYsKBGwOfsFV1-OtFaZ4RgqfUbeR2ugs_71wVSnttinthA7oU-KZB5ieSwY98MDu-wMhg7A2SHupppNn0Ej7QMUbJ5iSdjpn6F-e6rbUKtWpsAIYue_LO73Pi9VH61jPs5MlshZly94IuGVnFyfemCmIpsTDXymdsWmiVRadjMHWGFfvtNile6D0CnNrwDaRWwe7uPnpuoiajr5mcdDTCucgKPZxpBDtHbHzpZGrU0fgmGTblUIK"
+        }
+    ];
+
+    // Combinar reportes guardados con los estáticos
+    const todosLosReportes = [...reportesGuardados, ...reportesEstaticos];
+    
+    const container = document.getElementById('reportes-container');
+    const noReportesMsg = document.getElementById('no-reportes');
+
+    if (todosLosReportes.length === 0) {
+        container.innerHTML = '';
+        noReportesMsg.classList.remove('hidden');
+    } else {
+        noReportesMsg.classList.add('hidden');
+        // Mostrar reportes guardados primero (con botón eliminar) y luego los estáticos
+        container.innerHTML = reportesGuardados.map(reporte => crearTarjetaReporte(reporte, true)).join('') + 
+                             reportesEstaticos.map(reporte => crearTarjetaReporte(reporte, false)).join('');
+        
+        // Verificar si hay un reporte nuevo para destacar
+        const urlParams = new URLSearchParams(window.location.search);
+        const nuevoReporteId = urlParams.get('nuevo');
+        
+        if (nuevoReporteId) {
+            // Highlight del nuevo reporte
+            setTimeout(() => {
+                const nuevaTarjeta = container.querySelector(`[data-id="${nuevoReporteId}"]`);
+                if (nuevaTarjeta) {
+                    nuevaTarjeta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    nuevaTarjeta.classList.add('ring-2', 'ring-primary', 'ring-opacity-50');
+                    
+                    setTimeout(() => {
+                        nuevaTarjeta.classList.remove('ring-2', 'ring-primary', 'ring-opacity-50');
+                    }, 3000);
+                }
+            }, 500);
+        }
+    }
+}
+
+// Función para eliminar reporte
+function eliminarReporte(reporteId) {
+    if (confirm('¿Está seguro de que desea eliminar este reporte? Esta acción no se puede deshacer.')) {
+        let reportes = JSON.parse(localStorage.getItem('misReportes') || '[]');
+        reportes = reportes.filter(reporte => reporte.id != reporteId);
+        localStorage.setItem('misReportes', JSON.stringify(reportes));
+        
+        // Recargar la vista
+        cargarReportes();
+        
+        // Mostrar mensaje de confirmación
+        setTimeout(() => {
+            alert('El reporte ha sido eliminado exitosamente.');
+        }, 100);
+    }
+}
+
+// Cargar reportes cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    cargarReportes();
+    
+    // Mostrar mensaje de bienvenida si es un reporte nuevo
+    const urlParams = new URLSearchParams(window.location.search);
+    const nuevoReporteId = urlParams.get('nuevo');
+    
+    if (nuevoReporteId) {
+        // Remover parámetro de URL
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, document.title, newUrl);
+        
+        // Mostrar mensaje de éxito
+        setTimeout(() => {
+            alert('¡Su denuncia ha sido registrada exitosamente!\n\n' +
+                  `Número de seguimiento: #${nuevoReporteId}\n` +
+                  'Puede ver el progreso de su reporte en esta página.');
+        }, 1000);
+    }
+});
+</script></body></html>

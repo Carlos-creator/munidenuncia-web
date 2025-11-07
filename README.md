@@ -120,3 +120,13 @@ Los estilos CSS utilizan metodología BEM y están organizados por componente/p�
 ## 📄 Licencia
 
 ISC
+
+
+## 👥 Integrantes
+
+| Nombre                | ROL            |
+|----------------------|-----------------|
+| Cristóbal Cesped     | 202173054-0     |
+| Carlos Ramírez       | 202192826-K     |
+| Baltazar Portilla    | 202173112-1   |
+

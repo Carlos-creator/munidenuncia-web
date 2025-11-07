@@ -58,10 +58,26 @@ a { color: inherit; text-decoration: none; }
 
 .site-header__inner{
   height: 64px;
-  position: relative; /* para centrar nav */
-  display: grid;
-  grid-template-columns: 1fr auto 1fr; /* izq | centro | der */
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+}
+
+@media (min-width:768px){
+  .site-header__inner{
+    display:flex;
+  }
+  .site-header__brand {
+    flex: 0 0 auto;
+  }
+  .site-header__nav {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .site-header__actions {
+    flex: 0 0 auto;
+  }
 }
 
 .brand{ display:inline-flex; align-items:center; gap:12px; }
@@ -136,32 +152,32 @@ a { color: inherit; text-decoration: none; }
 /* =========================
    CARD
 ========================= */
-.card{
+.crear-denuncia-page .card{
   background:#fff; border:1px solid #e5e7eb; border-radius: var(--radius-lg);
   box-shadow: var(--shadow-1);
-  padding: 20px;
-  margin-bottom: 24px;
+  padding: 28px;
+  margin-bottom: 32px;
 }
-.theme--dark .card{ background:#0f172a; border-color:#334155; }
-.card__title{ font-size:1.05rem; font-weight:700; margin-bottom:16px; color:#111827; }
-.theme--dark .card__title{ color:#f8fafc; }
+.theme--dark .crear-denuncia-page .card{ background:#0f172a; border-color:#334155; }
+.crear-denuncia-page .card__title{ font-size:1.05rem; font-weight:700; margin-bottom:20px; color:#111827; }
+.theme--dark .crear-denuncia-page .card__title{ color:#f8fafc; }
 
 /* =========================
    GRID
 ========================= */
-.grid{ display:grid; gap:16px; }
-.grid--2{ grid-template-columns: 1fr; }
-@media (min-width: 768px) { .grid--2{ grid-template-columns: 1fr 1fr; } }
-.field--full{ grid-column: 1 / -1; }
+.crear-denuncia-page .grid{ display:grid; gap:20px; }
+.crear-denuncia-page .grid--2{ grid-template-columns: 1fr; }
+@media (min-width: 768px) { .crear-denuncia-page .grid--2{ grid-template-columns: 1fr 1fr; } }
+.crear-denuncia-page .field--full{ grid-column: 1 / -1; }
 
 /* =========================
    FIELD
 ========================= */
-.field{ display:block; }
-.field__label{ display:block; margin-bottom:8px; font-size:.92rem; color:#374151; }
-.theme--dark .field__label{ color:#e5e7eb; }
-.field__control{
-  width:100%; padding:10px 12px; border-radius: 8px;
+.crear-denuncia-page .field{ display:block; margin-bottom: 4px; }
+.crear-denuncia-page .field__label{ display:block; margin-bottom:10px; font-size:.92rem; font-weight: 600; color:#374151; }
+.theme--dark .crear-denuncia-page .field__label{ color:#e5e7eb; }
+.crear-denuncia-page .field__control{
+  width:100%; padding:12px 14px; border-radius: 8px;
   border:1px solid #d1d5db; background:#fff; color:#111827;
   transition: border-color .15s ease, box-shadow .15s ease;
 }
@@ -265,4 +281,14 @@ a { color: inherit; text-decoration: none; }
 /* Mantener la fuente de Material Symbols consistente */
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* =========================
+   CREAR DENUNCIA - Scope específico
+   Todas las clases dentro de .crear-denuncia-page
+   son específicas y no colisionan con otros estilos
+========================= */
+.crear-denuncia-page {
+  /* Este wrapper asegura que todos los estilos de esta página
+     tengan mayor especificidad y no afecten a otras páginas */
 }

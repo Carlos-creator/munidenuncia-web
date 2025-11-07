@@ -1,97 +1,122 @@
-# 🏙️ MuniDenuncia – Plataforma de Reportes Ciudadanos
+# MuniDenuncia - React + Webpack
 
-**MuniDenuncia** es un prototipo funcional de una plataforma web que permite a los ciudadanos reportar problemas urbanos, apoyar denuncias ya existentes y hacer seguimiento del estado de sus reportes.
+Sistema de Denuncias Municipales desarrollado con React y Webpack.
 
-> Este proyecto fue desarrollado con fines académicos por estudiantes de informática, y está centrado en la **usabilidad**, **accesibilidad** y una **navegación intuitiva**, pensada para usuarios con diversos niveles de experiencia digital.
+## 🚀 Inicio Rápido
 
----
+### 1. Las dependencias ya están instaladas
+
+Las dependencias de React, Webpack, Babel y todas las librerías ya se instalaron automáticamente.
+
+### 2. Iniciar el servidor de desarrollo
+
+```powershell
+npm start
+```
+
+La aplicación se abrirá automáticamente en `http://localhost:3000`
+
+### 3. Compilar para producción
+
+```powershell
+npm run build
+```
+
+Los archivos compilados se generarán en la carpeta `dist/`
 
 ## 📁 Estructura del Proyecto
 
-```bash
-├── index.html
-├── /templates
-│   ├── pagina_inicio.html
-│   ├── crear_denuncia.html
-│   ├── ver_denuncias.html
-│   ├── seguimiento_personal.html
-│   ├── detalle_denuncia.html
-│   └── pie_pagina_global.html
-├── /images
-│   ├── pagina_inicio_preview.png
-│   ├── crear_denuncia_preview.png
-│   ├── ver_denuncias_preview.png
-│   ├── seguimiento_personal_preview.png
-│   ├── detalle_denuncia_preview.png
-│   └── pie_pagina_global_preview.png
-````
+```
+├── public/                 # Archivos públicos estáticos
+│   ├── index.html         # Template HTML principal
+│   └── favicon.ico
+├── src/                   # Código fuente React
+│   ├── components/        # Componentes React
+│   │   └── layout/       
+│   │       ├── Header.jsx
+│   │       ├── Footer.jsx
+│   │       └── Layout.jsx
+│   ├── pages/            # Páginas/Vistas
+│   │   ├── Home.jsx
+│   │   ├── CrearDenuncia.jsx
+│   │   ├── VerDenuncias.jsx
+│   │   ├── DetalleDenuncia.jsx
+│   │   └── SeguimientoPersonal.jsx
+│   ├── App.jsx           # Componente principal con rutas
+│   └── index.js          # Punto de entrada
+├── css/                  # Estilos CSS (importados desde src/App.jsx)
+├── webpack.config.js     # Configuración de Webpack
+├── .babelrc             # Configuración de Babel
+└── package.json         # Dependencias del proyecto
+```
 
----
+## 🗺️ Rutas de la Aplicación
 
-## 🌐 Secciones principales
+- `/` - Página de inicio con denuncias destacadas
+- `/crear` - Formulario para crear nueva denuncia
+- `/denuncias` - Lista de todas las denuncias con filtros
+- `/detalle/:id` - Detalle de una denuncia específica
+- `/seguimiento` - Panel personal de seguimiento
 
-* **Inicio**: Bienvenida y navegación principal. Incluye denuncias destacadas.
-* **Crear denuncia**: Formulario simple con descripción, subida de imagen y mapa para ubicación.
-* **Ver denuncias**: Lista filtrable de reportes ciudadanos, con opción de "apoyar" denuncias.
-* **Seguimiento personal**: Visualización de denuncias realizadas por el usuario con barra de progreso.
-* **Detalle de denuncia**: Vista individual de una denuncia, con su estado y apoyo comunitario.
-* **Footer global**: Información institucional, redes sociales y enlaces legales.
+## 🛠️ Tecnologías
 
----
+- **React 18** - Biblioteca de UI
+- **React Router DOM** - Enrutamiento
+- **Webpack 5** - Module bundler
+- **Babel** - Transpilador
+- **Leaflet + React Leaflet** - Mapas interactivos
+- **CSS BEM** - Metodología de estilos
 
-## 🎯 Objetivos del Proyecto
+## ✨ Características
 
-* Facilitar la participación ciudadana.
-* Digitalizar procesos de denuncia urbana.
-* Hacer accesible la plataforma para todo tipo de usuarios (jóvenes, adultos mayores, etc).
-* Prototipo usable, navegable y adaptable a distintos dispositivos.
+### ✅ Migración Completa de HTML/JS a React
 
----
+- ✅ Todos los templates HTML convertidos a componentes React
+- ✅ Lógica JavaScript migrada a hooks (useState, useEffect)
+- ✅ Navegación convertida a React Router
+- ✅ Estilos CSS preservados
+- ✅ Funcionalidad de mapas con React Leaflet
+- ✅ Sistema de almacenamiento en LocalStorage
 
-## 🛠️ Tecnologías Utilizadas
+### 🎯 Funcionalidades Principales
 
-* HTML5 + CSS3 (estructura y estilo)
-* Stitch (diseño del prototipo previo)
-* GitHub (repositorio de versión)
+1. **Crear Denuncia**
+   - Formulario con validación
+   - Mapa interactivo con Leaflet
+   - Geolocalización del usuario
+   - Upload de imágenes con preview
 
----
+2. **Ver Denuncias**
+   - Lista de todas las denuncias
+   - Filtros por categoría, zona y estado
+   - Botón flotante para crear nueva
 
-## ⚠️ Aviso
+3. **Detalle de Denuncia**
+   - Información completa del reporte
+   - Barra de progreso
+   - Sistema de likes/apoyos
 
-Este proyecto es un **prototipo académico**, no tiene funcionalidades backend ni almacenamiento real de datos. Su propósito es explorar el diseño de interfaces centradas en el usuario.
+4. **Seguimiento Personal**
+   - Dashboard con estadísticas
+   - Tabla de denuncias personales
+   - Gestión de reportes
 
----
+## 📝 Scripts Disponibles
 
-## 📸 Vistas Previas
+- `npm start` - Inicia servidor de desarrollo (puerto 3000)
+- `npm run dev` - Alias para npm start
+- `npm run build` - Compila para producción
 
-Las vistas previas de cada sección están disponibles en la carpeta `/images`.
+## 💾 Persistencia de Datos
 
----
+Los datos se almacenan en LocalStorage:
+- `misReportes` - Array de denuncias del usuario
+- `liked_report_{id}` - Estado de likes por denuncia
 
-## 🌍 Acceso al prototipo en línea
+## 🎨 Estilos
 
-Puedes acceder al prototipo web de MuniDenuncia desde el siguiente enlace:
+Los estilos CSS utilizan metodología BEM y están organizados por componente/página.
 
-👉 [munidenuncia-web.netlify.app](https://munidenuncia-web.netlify.app/templates/pagina_inicio)
+## 📄 Licencia
 
-No requiere instalación ni registro. Ideal para sesiones de testing remoto o demostraciones rápidas.
-
-
-## 🙌 Créditos
-
-
-Integrantes del equipo:
-
-* 🎓 Cristobal Cesped — 202173054-0
-
-* 🎓 Carlos Ramírez — 202192826-K
-
-* 🎓 Baltazar Portilla — 202173112-1
-
-Proyecto realizado como parte de una actividad académica de la carrera de Ingeniería Civil en Informática 💻
-Gracias por revisar este proyecto 🚀
-
----
-
-
-
+ISC

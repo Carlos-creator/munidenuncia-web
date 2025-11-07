@@ -1,4 +1,5 @@
 /* =========================
+   MuniDenuncia CSS - v2.0
    RESET & BASE
 ========================= */
 *,
@@ -89,7 +90,29 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+}
+
+@media (min-width: 768px) {
+  .site-header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .site-header__brand {
+    flex: 0 0 auto;
+  }
+  
+  .site-header__nav {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .site-header__actions {
+    flex: 0 0 auto;
+  }
 }
 
 .brand {
@@ -128,19 +151,7 @@ a {
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
   }
-}
-
-.site-header__brand {
-  flex: 0 0 auto;
-}
-
-.site-header__actions {
-  flex: 0 0 auto;
-  margin-left: auto;
 }
 
 .nav__link {
@@ -218,6 +229,60 @@ a {
 .button--lg {
   padding: 12px 20px;
   font-size: 1.05rem;
+}
+
+.button--ghost {
+  --_bg: white;
+  --_fg: #111827;
+  border-color: rgba(0,0,0,0.1);
+}
+
+.button--ghost:hover {
+  --_bg: #f9fafb;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.section {
+  padding-block: 32px;
+}
+
+.section--spacing {
+  padding-block: 64px;
+}
+
+.section--muted {
+  background: #f9fafb;
+}
+
+.theme--dark .section--muted {
+  background: rgba(255,255,255,0.03);
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section__title {
+  font-size: clamp(1.75rem, 1.15rem + 2vw, 2.25rem);
+  font-weight: 800;
+  color: #0b1220;
+}
+
+.theme--dark .section__title {
+  color: #fff;
+}
+
+.section__subtitle {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 1.05rem;
+}
+
+.theme--dark .section__subtitle {
+  color: #cbd5e1;
 }
 
 /* =========================
@@ -299,12 +364,10 @@ a {
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
   background: white;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-1);
+  overflow: hidden;
   transition: transform .15s ease, box-shadow .15s ease;
 }
 
@@ -325,29 +388,28 @@ a {
 }
 
 .card__body {
-  padding: 20px;
-  display: grid;
-  gap: 8px;
+  padding: 1.3rem;
 }
 
 .card__topline {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .card__tag {
   color: var(--color-primary);
   font-weight: 700;
-  font-size: .9rem;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .card__title {
-  margin: 2px 0 4px;
   font-weight: 800;
-  color: #0b1220;
-  font-size: 1.1rem;
+  margin-top: 4px;
+  color: #111827;
+  font-size: 1rem !important;
 }
 
 .theme--dark .card__title {
@@ -363,6 +425,19 @@ a {
   font-size: .95rem;
 }
 
+.card__meta--inline {
+  display: flex;
+  align-items: center;
+}
+
+.card__meta-emoji {
+  font-size: 1rem;
+}
+
+.card__meta-text {
+  margin: 0;
+}
+
 .theme--dark .card__meta {
   color: #cbd5e1;
 }
@@ -374,7 +449,8 @@ a {
 
 .card__author {
   color: #6b7280;
-  font-size: .95rem;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .theme--dark .card__author {

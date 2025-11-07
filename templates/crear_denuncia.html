@@ -1,527 +1,204 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CityConnect - Crear Denuncia</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#13a4ec",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101c22",
-                    },
-                    fontFamily: {
-                        "display": ["Public Sans"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        #map {
-            height: 300px;
-            border-radius: 0.5rem;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CityConnect - Crear Denuncia</title>
+
+  <!-- Fuente e íconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+
+  <!-- CSS propio (BEM) -->
+  <link rel="stylesheet" href="../css/crear_denuncia.css"/>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-    <div class="flex flex-col min-h-screen">
-        <!-- Header -->
-        <header class="bg-background-light dark:bg-background-dark/50 backdrop-blur-sm sticky top-0 z-10 border-b border-gray-200 dark:border-gray-800">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16">
-                    <div class="flex items-center gap-4">
-                        <a href="pagina_inicio.html" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
-                            <div class="text-primary size-7">
-                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
-                                </svg>
-                            </div>
-                            <h1 class="text-xl font-bold text-gray-900 dark:text-white">MuniDenuncia</h1>
-                        </a>
-                    </div>
-                    <nav class="hidden md:flex items-center gap-8">
-                        <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="pagina_inicio.html">Inicio</a>
-                        <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="ver_denuncias.html">Reportes</a>
-                        <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="seguimiento_personal.html">Mi Cuenta</a>
-                    </nav>
-                    <div class="flex items-center gap-4">
-                        <button class="relative rounded-full p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200">
-                            <span class="material-symbols-outlined">notifications</span>
-                        </button>
-                        <div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAShsY4gyQlkLnsv7JN1CvSfK_rNWFWrpkdffCnlQl_uwKJuBs6vTYACKUcNQoQl-33Rr27-1KOb-jXjGbIb2LGnoIG0V1fQXYGma-k4Gmr8ku-Ocqj7R-foaZorQu2JZkwpEFQTczCmXPe-q-VI1hpSp-7wXJ_IUSMPRYQQzZMfdgEkr6-uvmNLcgSEq4cv1KqtU4Ha0viqVp3KFQHY0I8nL136jbVvkKyrvz2vgJCJtxhD9EGTykA7aBAdS4jX1C9_RHC9N-pckNA");'></div>
-                    </div>
+<body class="theme theme--light">
+  <div class="layout">
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="site-header__inner container">
+        <!-- IZQUIERDA: marca -->
+        <div class="site-header__brand">
+          <a href="pagina_inicio.html" class="brand">
+            <span class="brand__logo" aria-hidden="true">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="brand__logo-svg">
+                <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span class="brand__name">CityConnect</span>
+          </a>
+        </div>
+
+        <!-- CENTRO: nav centrado, oculto en mobile -->
+        <nav class="nav nav--center nav--md">
+          <a href="pagina_inicio.html" class="nav__link">Inicio</a>
+          <a href="ver_denuncias.html" class="nav__link">Reportes</a>
+          <a href="seguimiento_personal.html" class="nav__link">Mi Cuenta</a>
+        </nav>
+
+        <!-- DERECHA: acciones -->
+        <div class="site-header__actions actions">
+          <button class="icon-button" type="button" aria-label="Notificaciones">
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <div class="avatar" style='--avatar-url: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAShsY4gyQlkLnsv7JN1CvSfK_rNWFWrpkdffCnlQl_uwKJuBs6vTYACKUcNQoQl-33Rr27-1KOb-jXjGbIb2LGnoIG0V1fQXYGma-k4Gmr8ku-Ocqj7R-foaZorQu2JZkwpEFQTczCmXPe-q-VI1hpSp-7wXJ_IUSMPRYQQzZMfdgEkr6-uvmNLcgSEq4cv1KqtU4Ha0viqVp3KFQHY0I8nL136jbVvkKyrvz2vgJCJtxhD9EGTykA7aBAdS4jX1C9_RHC9N-pckNA");'></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="container page">
+        <div class="page__inner page__inner--narrow">
+
+          <!-- Breadcrumb -->
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb__list">
+              <li class="breadcrumb__item">
+                <a href="pagina_inicio.html" class="breadcrumb__link">Inicio</a>
+              </li>
+              <li class="breadcrumb__item">
+                <span class="breadcrumb__sep">/</span>
+                <span class="breadcrumb__current">Crear Denuncia</span>
+              </li>
+            </ol>
+          </nav>
+
+          <!-- Título -->
+          <header class="page-header">
+            <h1 class="page-header__title">Crear Nueva Denuncia</h1>
+            <p class="page-header__subtitle">Comparta los detalles de su reporte para que podamos ayudarle de la mejor manera.</p>
+          </header>
+
+          <!-- Formulario -->
+          <form id="denunciaForm" class="report-form">
+            <!-- Información básica -->
+            <section class="card">
+              <h2 class="card__title">Información Básica</h2>
+
+              <div class="grid grid--2">
+                <div class="field">
+                  <label for="titulo" class="field__label">Título de la Denuncia *</label>
+                  <input type="text" id="titulo" name="titulo" required class="field__control" placeholder="Ej: Bache en la calle principal"/>
                 </div>
-            </div>
-        </header>
 
-        <!-- Main Content -->
-        <main class="flex-grow">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                <div class="max-w-4xl mx-auto">
-                    <!-- Breadcrumb -->
-                    <nav class="flex mb-8" aria-label="Breadcrumb">
-                        <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                            <li class="inline-flex items-center">
-                                <a href="pagina_inicio.html" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
-                                    Inicio
-                                </a>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <span class="mx-2 text-gray-400">/</span>
-                                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Crear Denuncia</span>
-                                </div>
-                            </li>
-                        </ol>
-                    </nav>
-
-                    <!-- Header -->
-                    <div class="mb-8">
-                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Crear Nueva Denuncia</h2>
-                        <p class="mt-2 text-base text-gray-600 dark:text-gray-400">Comparta los detalles de su reporte para que podamos ayudarle de la mejor manera.</p>
-                    </div>
-
-                    <!-- Formulario -->
-                    <form id="denunciaForm" class="space-y-8">
-                        <!-- Información Básica -->
-                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-6">Información Básica</h3>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="titulo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Título de la Denuncia *</label>
-                                    <input type="text" id="titulo" name="titulo" required 
-                                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white"
-                                           placeholder="Ej: Bache en la calle principal">
-                                </div>
-
-                                <div>
-                                    <label for="categoria" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Categoría *</label>
-                                    <select id="categoria" name="categoria" required 
-                                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white">
-                                        <option value="">Seleccione una categoría</option>
-                                        <option value="infraestructura">Infraestructura</option>
-                                        <option value="iluminacion">Iluminación</option>
-                                        <option value="limpieza">Limpieza</option>
-                                        <option value="vandalismo">Vandalismo</option>
-                                        <option value="transito">Tránsito</option>
-                                        <option value="otros">Otros</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="mt-6">
-                                <label for="descripcion" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Descripción *</label>
-                                <textarea id="descripcion" name="descripcion" rows="4" required 
-                                          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white"
-                                          placeholder="Describa detalladamente el problema..."></textarea>
-                            </div>
-                        </div>
-
-                        <!-- Imagen -->
-                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-6">Evidencia Fotográfica</h3>
-                            
-                            <div class="space-y-4">
-                                <div>
-                                    <label for="imagen" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Adjuntar Imagen</label>
-                                    <div class="flex items-center justify-center w-full">
-                                        <label for="imagen" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
-                                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                                <span class="material-symbols-outlined text-gray-500 dark:text-gray-400 mb-2">cloud_upload</span>
-                                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                                    <span class="font-semibold">Haga clic para cargar</span> o arrastre y suelte
-                                                </p>
-                                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG o JPEG (MAX. 5MB)</p>
-                                            </div>
-                                            <input id="imagen" type="file" accept="image/*" class="hidden" onchange="previewImage(this)">
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Vista previa de imagen -->
-                                <div id="imagePreview" class="hidden">
-                                    <div class="relative">
-                                        <img id="previewImg" src="" alt="Vista previa" class="w-full max-w-md h-48 object-cover rounded-lg border border-gray-300 dark:border-gray-600">
-                                        <button type="button" onclick="removeImage()" class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 text-sm">
-                                            <span class="material-symbols-outlined text-sm">close</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Ubicación -->
-                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-6">Ubicación del Problema</h3>
-                            
-                            <!-- Mapa Interactivo -->
-                            <div class="mb-6">
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Seleccione la ubicación en el mapa</label>
-                                <div id="map" class="border border-gray-300 dark:border-gray-600"></div>
-                                <div class="mt-2 flex gap-2">
-                                    <button type="button" onclick="getCurrentLocation()" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                                        <span class="material-symbols-outlined mr-1 text-sm">my_location</span>
-                                        Mi Ubicación
-                                    </button>
-                                    <span id="locationStatus" class="inline-flex items-center px-3 py-2 text-sm text-gray-600 dark:text-gray-400"></span>
-                                </div>
-                            </div>
-
-                            <!-- Campos de Ubicación -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="md:col-span-2">
-                                    <label for="direccion" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Dirección *</label>
-                                    <input type="text" id="direccion" name="direccion" required 
-                                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white"
-                                           placeholder="Ej: Av. Libertador 1250, entre Mitre y San Martín">
-                                </div>
-
-                                <div>
-                                    <label for="zona" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Zona *</label>
-                                    <select id="zona" name="zona" required 
-                                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white">
-                                        <option value="">Seleccione una zona</option>
-                                        <option value="centro">Zona Centro</option>
-                                        <option value="norte">Zona Norte</option>
-                                        <option value="sur">Zona Sur</option>
-                                        <option value="este">Zona Este</option>
-                                        <option value="oeste">Zona Oeste</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label for="referencia" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Referencia</label>
-                                    <input type="text" id="referencia" name="referencia" 
-                                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white"
-                                           placeholder="Ej: Frente al banco, al lado del parque">
-                                </div>
-                            </div>
-
-                            <!-- Coordenadas ocultas -->
-                            <input type="hidden" id="latitud" name="latitud">
-                            <input type="hidden" id="longitud" name="longitud">
-                        </div>
-
-                        <!-- Botones de Acción -->
-                        <div class="flex flex-col sm:flex-row gap-4 justify-end">
-                            <button type="button" onclick="cancelarFormulario()" class="w-full sm:w-auto px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-base font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                                Cancelar
-                            </button>
-                            <button type="submit" class="w-full sm:w-auto px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                                Enviar Denuncia
-                            </button>
-                        </div>
-                    </form>
+                <div class="field">
+                  <label for="categoria" class="field__label">Categoría *</label>
+                  <select id="categoria" name="categoria" required class="field__control">
+                    <option value="">Seleccione una categoría</option>
+                    <option value="infraestructura">Infraestructura</option>
+                    <option value="iluminacion">Iluminación</option>
+                    <option value="limpieza">Limpieza</option>
+                    <option value="vandalismo">Vandalismo</option>
+                    <option value="transito">Tránsito</option>
+                    <option value="otros">Otros</option>
+                  </select>
                 </div>
+              </div>
+
+              <div class="field">
+                <label for="descripcion" class="field__label">Descripción *</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required class="field__control" placeholder="Describa detalladamente el problema..."></textarea>
+              </div>
+            </section>
+
+            <!-- Imagen -->
+            <section class="card">
+              <h2 class="card__title">Evidencia Fotográfica</h2>
+
+              <div class="upload">
+                <label for="imagen" class="upload__drop">
+                  <div class="upload__content">
+                    <span class="material-symbols-outlined upload__icon">cloud_upload</span>
+                    <p class="upload__text"><strong>Haga clic para cargar</strong> o arrastre y suelte</p>
+                    <p class="upload__hint">PNG, JPG o JPEG (MAX. 5MB)</p>
+                  </div>
+                  <input id="imagen" type="file" accept="image/*" class="upload__input"/>
+                </label>
+
+                <div id="imagePreview" class="preview preview--hidden">
+                  <div class="preview__frame">
+                    <img id="previewImg" src="" alt="Vista previa" class="preview__img"/>
+                    <button type="button" class="preview__remove" aria-label="Eliminar imagen">
+                      <span class="material-symbols-outlined">close</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Ubicación -->
+            <section class="card">
+              <h2 class="card__title">Ubicación del Problema</h2>
+
+              <div class="field">
+                <label class="field__label">Seleccione la ubicación en el mapa</label>
+                <div id="map" class="map"></div>
+                <div class="map__actions">
+                  <button type="button" class="button button--primary button--sm" id="btnMiUbicacion">
+                    <span class="material-symbols-outlined button__icon">my_location</span>
+                    Mi Ubicación
+                  </button>
+                  <span id="locationStatus" class="map__status"></span>
+                </div>
+              </div>
+
+              <div class="grid grid--2">
+                <div class="field field--full">
+                  <label for="direccion" class="field__label">Dirección *</label>
+                  <input type="text" id="direccion" name="direccion" required class="field__control" placeholder="Ej: Av. Libertador 1250, entre Mitre y San Martín"/>
+                </div>
+
+                <div class="field">
+                  <label for="zona" class="field__label">Zona *</label>
+                  <select id="zona" name="zona" required class="field__control">
+                    <option value="">Seleccione una zona</option>
+                    <option value="centro">Zona Centro</option>
+                    <option value="norte">Zona Norte</option>
+                    <option value="sur">Zona Sur</option>
+                    <option value="este">Zona Este</option>
+                    <option value="oeste">Zona Oeste</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="referencia" class="field__label">Referencia</label>
+                  <input type="text" id="referencia" name="referencia" class="field__control" placeholder="Ej: Frente al banco, al lado del parque"/>
+                </div>
+              </div>
+
+              <!-- Coordenadas ocultas -->
+              <input type="hidden" id="latitud" name="latitud"/>
+              <input type="hidden" id="longitud" name="longitud"/>
+            </section>
+
+            <!-- Acciones -->
+            <div class="form-actions">
+              <button type="button" class="button button--ghost" id="btnCancelar">Cancelar</button>
+              <button type="submit" class="button button--primary">Enviar Denuncia</button>
             </div>
-        </main>
+          </form>
 
-        <!-- Footer -->
-        <footer class="bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 mt-auto">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <p class="text-center text-sm text-gray-500 dark:text-gray-400">© 2024 CityConnect. Todos los derechos reservados.</p>
-            </div>
-        </footer>
-    </div>
+        </div>
+      </div>
+    </main>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    
-    <script>
-        let map;
-        let marker;
-        let userLocation = null;
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="site-footer__inner container">
+        <p class="site-footer__copy">© 2024 CityConnect. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
 
-        // Inicializar mapa
-        function initMap() {
-            // Coordenadas de ejemplo (centro de una ciudad)
-            const defaultLat = -34.6037;
-            const defaultLng = -58.3816;
-
-            map = L.map('map').setView([defaultLat, defaultLng], 13);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-
-            // Agregar marcador clickeable
-            map.on('click', function(e) {
-                updateMarker(e.latlng.lat, e.latlng.lng);
-                updateAddressFromCoords(e.latlng.lat, e.latlng.lng);
-            });
-        }
-
-        // Actualizar marcador en el mapa
-        function updateMarker(lat, lng) {
-            if (marker) {
-                map.removeLayer(marker);
-            }
-            
-            marker = L.marker([lat, lng]).addTo(map);
-            document.getElementById('latitud').value = lat;
-            document.getElementById('longitud').value = lng;
-        }
-
-        // Obtener ubicación actual
-        function getCurrentLocation() {
-            const statusElement = document.getElementById('locationStatus');
-            statusElement.textContent = 'Obteniendo ubicación...';
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    function(position) {
-                        const lat = position.coords.latitude;
-                        const lng = position.coords.longitude;
-                        
-                        userLocation = { lat, lng };
-                        map.setView([lat, lng], 16);
-                        updateMarker(lat, lng);
-                        updateAddressFromCoords(lat, lng);
-                        
-                        statusElement.textContent = 'Ubicación obtenida';
-                        setTimeout(() => statusElement.textContent = '', 3000);
-                    },
-                    function(error) {
-                        console.error('Error obteniendo ubicación:', error);
-                        statusElement.textContent = 'Error al obtener ubicación';
-                        setTimeout(() => statusElement.textContent = '', 3000);
-                    },
-                    { enableHighAccuracy: true }
-                );
-            } else {
-                statusElement.textContent = 'Geolocalización no disponible';
-            }
-        }
-
-        // Actualizar dirección basada en coordenadas (geocoding reverso)
-        function updateAddressFromCoords(lat, lng) {
-            // Usar el servicio de geocoding reverso de Nominatim (OpenStreetMap)
-            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`;
-            
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.display_name) {
-                        // Extraer componentes de la dirección
-                        const address = data.address || {};
-                        const direccionCompleta = data.display_name;
-                        
-                        // Construir dirección más legible
-                        let direccionLegible = '';
-                        if (address.road && address.house_number) {
-                            direccionLegible = `${address.road} ${address.house_number}`;
-                        } else if (address.road) {
-                            direccionLegible = address.road;
-                        } else {
-                            direccionLegible = direccionCompleta.split(',')[0];
-                        }
-                        
-                        // Agregar localidad si existe
-                        if (address.suburb || address.neighbourhood) {
-                            direccionLegible += `, ${address.suburb || address.neighbourhood}`;
-                        }
-                        
-                        document.getElementById('direccion').value = direccionLegible;
-                        
-                        // Auto-seleccionar zona basada en la ubicación (aproximado)
-                        const zonaSelect = document.getElementById('zona');
-                        if (address.suburb) {
-                            const suburb = address.suburb.toLowerCase();
-                            if (suburb.includes('centro') || suburb.includes('microcentro')) {
-                                zonaSelect.value = 'centro';
-                            } else if (suburb.includes('norte') || suburb.includes('palermo') || suburb.includes('belgrano')) {
-                                zonaSelect.value = 'norte';
-                            } else if (suburb.includes('sur') || suburb.includes('boca') || suburb.includes('barracas')) {
-                                zonaSelect.value = 'sur';
-                            } else if (suburb.includes('oeste') || suburb.includes('flores') || suburb.includes('caballito')) {
-                                zonaSelect.value = 'oeste';
-                            } else if (suburb.includes('este') || suburb.includes('puerto madero')) {
-                                zonaSelect.value = 'este';
-                            }
-                        }
-                    }
-                })
-                .catch(error => {
-                    console.error('Error en geocoding:', error);
-                    // Fallback a direcciones de ejemplo
-                    const direcciones = [
-                        'Av. Corrientes ' + Math.floor(Math.random() * 9000 + 1000),
-                        'Av. Santa Fe ' + Math.floor(Math.random() * 9000 + 1000),
-                        'Av. Rivadavia ' + Math.floor(Math.random() * 9000 + 1000),
-                        'Av. Cabildo ' + Math.floor(Math.random() * 9000 + 1000)
-                    ];
-                    
-                    const direccionAleatoria = direcciones[Math.floor(Math.random() * direcciones.length)];
-                    document.getElementById('direccion').value = direccionAleatoria;
-                });
-        }
-
-        // Variable global para almacenar la imagen
-        let imagenBase64 = null;
-
-        // Vista previa de imagen
-        function previewImage(input) {
-            const file = input.files[0];
-            console.log('Archivo seleccionado:', file ? `${file.name} (${file.size} bytes, tipo: ${file.type})` : 'Ninguno');
-            
-            if (file) {
-                if (file.size > 5 * 1024 * 1024) { // 5MB
-                    alert('El archivo es demasiado grande. Máximo 5MB.');
-                    input.value = '';
-                    imagenBase64 = null;
-                    return;
-                }
-
-                if (!file.type.startsWith('image/')) {
-                    alert('Por favor seleccione un archivo de imagen válido.');
-                    input.value = '';
-                    imagenBase64 = null;
-                    return;
-                }
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const previewImg = document.getElementById('previewImg');
-                    previewImg.src = e.target.result;
-                    document.getElementById('imagePreview').classList.remove('hidden');
-                    
-                    // Guardar en variable global
-                    imagenBase64 = e.target.result;
-                    
-                    // Debug: verificar que la imagen se cargó
-                    console.log('Imagen cargada para preview, tamaño base64:', e.target.result.length);
-                    console.log('Preview establecido correctamente');
-                    console.log('Imagen guardada en variable global');
-                };
-                
-                reader.onerror = function() {
-                    console.error('Error al leer el archivo');
-                    alert('Error al cargar la imagen');
-                    imagenBase64 = null;
-                };
-                
-                reader.readAsDataURL(file);
-            } else {
-                imagenBase64 = null;
-            }
-        }
-
-        // Remover imagen
-        function removeImage() {
-            document.getElementById('imagen').value = '';
-            document.getElementById('imagePreview').classList.add('hidden');
-            imagenBase64 = null; // Limpiar variable global
-            console.log('Imagen removida, variable global limpiada');
-        }
-
-        // Cancelar formulario
-        function cancelarFormulario() {
-            if (confirm('¿Está seguro de que desea cancelar? Se perderán todos los datos ingresados.')) {
-                window.location.href = 'seguimiento_personal.html';
-            }
-        }
-
-        // Generar ID único para la nueva denuncia
-        function generateReportId() {
-            return Math.floor(Math.random() * 90000 + 10000);
-        }
-
-        // Manejar envío del formulario
-        document.getElementById('denunciaForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const newReportId = generateReportId();
-            const currentDate = new Date();
-            
-            // Usar la variable global de imagen
-            console.log('Imagen de variable global disponible:', !!imagenBase64);
-            console.log('Tamaño de imagen global:', imagenBase64 ? imagenBase64.length : 0);
-
-            // Crear objeto de denuncia
-            const denunciaData = {
-                id: newReportId,
-                titulo: formData.get('titulo') || '',
-                categoria: formData.get('categoria') || '',
-                descripcion: formData.get('descripcion') || '',
-                direccion: formData.get('direccion') || '',
-                zona: formData.get('zona') || '',
-                referencia: formData.get('referencia') || '',
-                latitud: formData.get('latitud') || '',
-                longitud: formData.get('longitud') || '',
-                imagen: imagenBase64, // Usar variable global directamente
-                fecha: currentDate.toLocaleDateString('es-ES', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                }),
-                fechaCreacion: currentDate.toISOString(),
-                estado: 'Pendiente',
-                progreso: 10,
-                observaciones: 'El reporte está pendiente de asignación a un departamento específico.',
-                likes: 0
-            };
-
-            // Validar campos obligatorios
-            if (!denunciaData.titulo || !denunciaData.categoria || !denunciaData.descripcion || !denunciaData.direccion || !denunciaData.zona) {
-                alert('Por favor complete todos los campos obligatorios.');
-                return;
-            }
-
-            console.log('Guardando reporte con ID:', denunciaData.id); 
-            console.log('Imagen incluida en datos finales:', !!denunciaData.imagen, denunciaData.imagen ? `(${denunciaData.imagen.length} caracteres)` : '');
-
-            // Guardar en localStorage
-            let reportes = JSON.parse(localStorage.getItem('misReportes') || '[]');
-            reportes.unshift(denunciaData);
-            
-            try {
-                localStorage.setItem('misReportes', JSON.stringify(reportes));
-                console.log('Reportes guardados en localStorage:', reportes.length);
-                
-                // Verificar que se guardó correctamente
-                const verificacion = JSON.parse(localStorage.getItem('misReportes') || '[]');
-                console.log('Verificación - primer reporte tiene imagen:', !!verificacion[0]?.imagen);
-                
-            } catch (error) {
-                console.error('Error guardando en localStorage:', error);
-                alert('Error guardando el reporte. La imagen podría ser muy grande.');
-                return;
-            }
-
-            // Mostrar mensaje de éxito
-            alert(`¡Denuncia enviada exitosamente!\nNúmero de reporte: #${newReportId}\n\nSerá redirigido a su panel de seguimiento.`);
-
-            // Redirigir a seguimiento
-            window.location.href = `seguimiento_personal.html?nuevo=${newReportId}`;
-        });
-
-        // Inicializar cuando cargue la página
-        document.addEventListener('DOMContentLoaded', function() {
-            initMap();
-        });
-    </script>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="../js/crear_denuncia.js" defer></script>
 </body>
 </html>
-

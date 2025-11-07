@@ -1,817 +1,295 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta char<div<div class="flex items-center gap-8">
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CityConnect — Reportes Públicos</title>
 
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>CityConnect - Reportes Públicos</title>
-<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#13a4ec",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101c22",
-                    },
-                    fontFamily: {
-                        "display": ["Public Sans"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
-        }
-    </style>
+  <!-- Fuentes / Iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- CSS de la página -->
+  <link rel="stylesheet" href="../css/ver_denuncias.css"/>
+
+  <!-- Solo para los símbolos de Google (puedes moverlo a tu .css) -->
+  <style>
+    .material-symbols-outlined{
+      font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+    }
+  </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-<div class="flex flex-col min-h-screen">
-<header class="bg-background-light dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-10 border-b border-primary/20">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-16">
-<div class="flex items-center gap-3">
-<a href="pagina_inicio.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-<div class="w-8 h-8 text-primary">
-<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path></svg>
-</div>
-<h2 class="text-xl font-bold text-gray-900 dark:text-white">MuniDenuncia</h2>
-</a>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium hover:text-primary transition-colors" href="pagina_inicio.html">Inicio</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="ver_denuncias.html">Denuncias</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="seguimiento_personal.html">Mi Seguimiento</a>
-</nav>
-<div class="flex items-center">
-<button class="bg-primary/20 dark:bg-primary/30 text-primary font-bold px-4 py-2 rounded-lg text-sm hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">
-                            Iniciar Sesión
-                        </button>
-</div>
-</div>
-</div>
-</header>
-<main class="flex-grow">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-<div class="max-w-4xl mx-auto">
-<div class="text-center mb-8">
-<h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Reportes Públicos</h2>
-<p class="mt-2 text-lg text-slate-600 dark:text-slate-400">Explora los reportes de otros ciudadanos y apoya aquellos que te interesen.</p>
-</div>
-<div class="mb-6">
-<div class="relative">
-<label class="relative">
-<span class="sr-only">Buscar por dirección o palabra clave</span>
-<span class="absolute inset-y-0 left-0 flex items-center pl-4">
-<span class="material-symbols-outlined text-slate-400 dark:text-slate-500">search</span>
-</span>
-<input 
-    id="search-input"
-    class="form-input block w-full rounded-lg bg-background-light dark:bg-background-dark py-3 pl-12 pr-12 text-base focus:outline-none focus:ring-2 focus:ring-primary border border-slate-300 dark:border-slate-700 transition-all duration-200" 
-    placeholder="Buscar por dirección, problema o número de reporte..." 
-    value=""
-    autocomplete="off"
-/>
-<button 
-    id="clear-search" 
-    class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hidden"
-    onclick="clearSearch()"
->
-    <span class="material-symbols-outlined text-lg">close</span>
-</button>
-</label>
 
-<!-- Dropdown de sugerencias -->
-<div id="search-suggestions" class="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-50 hidden max-h-60 overflow-y-auto">
-    <div class="py-2" id="suggestions-content">
-        <!-- Las sugerencias se llenarán dinámicamente -->
+<body class="theme theme--light">
+<div class="layout">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <!-- Marca -->
+      <div class="site-header__brand">
+        <a class="brand" href="pagina_inicio.html" aria-label="Ir al inicio">
+          <span class="brand__logo" aria-hidden="true">
+            <svg class="brand__logo-svg" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="brand__name">MuniDenuncia</span>
+        </a>
+      </div>
+
+      <!-- Nav centrado (desktop) -->
+      <nav class="nav nav--center nav--md" aria-label="Principal">
+        <a class="nav__link" href="pagina_inicio.html">Inicio</a>
+        <a class="nav__link nav__link--active" href="ver_denuncias.html">Reportar</a>
+        <a class="nav__link" href="seguimiento_personal.html">Mis Reportes</a>
+        <a class="nav__link" href="#ayuda">Ayuda</a>
+      </nav>
+
+      <!-- Acciones derecha -->
+      <div class="site-header__actions">
+        <div class="search search--header">
+          <label class="search__label">
+            <span class="search__icon material-symbols-outlined" aria-hidden="true">search</span>
+            <input class="search__input" type="text" placeholder="Buscar" aria-label="Buscar"/>
+          </label>
+        </div>
+        <div class="avatar" style='--avatar-url:url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUKJbIAjd7mhfSmHNG6YGFl7UaUpQDqKfjfk4GosU2koJpkQdY04nxx4JkhSh1gjkRY-_rK1oMf-aaB6lFfNmfQmpx2eY2MmGh8LyuLSLgm_P730pCqfDyNRlVHIKZPGC0dKSJYEaE20IheQr8SZRoelcN93CtvwqvKQlZYU0bHUo29UncKznFm6OdZfF66btUXjXz9K2Lh1hZYkmNNalsSRJUD6VuxLcNsjK7K_e5Zs64DOZkqcrpYBdklexitZIC_UrB3jxTZDN0");'></div>
+      </div>
     </div>
-</div>
+  </header>
 
-<!-- Contador de resultados -->
-<div id="results-counter" class="mt-2 text-sm text-slate-600 dark:text-slate-400 hidden">
-    <span id="results-text"></span>
-</div>
-</div>
-</div>
+  <!-- Main -->
+  <main class="main">
+    <div class="container page">
+      <div class="page__inner page__inner--narrow">
 
+        <!-- Título -->
+        <header class="page-header">
+          <h1 class="page-header__title">Reportes Públicos</h1>
+          <p class="page-header__subtitle">Explora los reportes de otros ciudadanos y apoya aquellos que te interesen.</p>
+        </header>
 
-<!-- Sección con filtros y botón de crear reporte -->
-<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-<div class="flex flex-wrap items-center gap-2">
-<!-- Filtro Tipo de Problema -->
-<div class="relative">
-<button onclick="toggleDropdown('tipo-dropdown')" class="flex items-center justify-center gap-x-1 rounded-lg px-3 py-1.5 text-sm font-medium bg-slate-200/60 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:bg-primary/20 dark:hover:bg-primary/30">
-<span id="tipo-text">Tipo de Problema</span>
-<span class="material-symbols-outlined text-base">expand_more</span>
-</button>
-<div id="tipo-dropdown" class="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-50 hidden">
-<div class="py-2">
-<button onclick="filterByTipo('todos')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Todos</button>
-<button onclick="filterByTipo('infraestructura')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Infraestructura</button>
-<button onclick="filterByTipo('iluminacion')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Iluminación</button>
-<button onclick="filterByTipo('basura')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Basura</button>
-<button onclick="filterByTipo('vandalismo')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Vandalismo</button>
-</div>
-</div>
-</div>
+        <!-- Buscador -->
+        <section class="search search--main">
+          <div class="search__field">
+            <label class="search__label">
+              <span class="search__icon material-symbols-outlined" aria-hidden="true">search</span>
+              <input
+                id="search-input"
+                class="search__input search__input--xl"
+                type="text"
+                placeholder="Buscar por dirección, problema o número de reporte…"
+                aria-label="Buscar por dirección, problema o número de reporte"
+                autocomplete="off"
+              />
+              <button id="clear-search" class="search__clear is-hidden" type="button" aria-label="Limpiar búsqueda">
+                <span class="material-symbols-outlined">close</span>
+              </button>
+            </label>
 
-<!-- Filtro Zona -->
-<div class="relative">
-<button onclick="toggleDropdown('zona-dropdown')" class="flex items-center justify-center gap-x-1 rounded-lg px-3 py-1.5 text-sm font-medium bg-slate-200/60 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:bg-primary/20 dark:hover:bg-primary/30">
-<span id="zona-text">Zona</span>
-<span class="material-symbols-outlined text-base">expand_more</span>
-</button>
-<div id="zona-dropdown" class="absolute top-full left-0 mt-2 w-32 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-50 hidden">
-<div class="py-2">
-<button onclick="filterByZona('todos')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Todas</button>
-<button onclick="filterByZona('centro')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Centro</button>
-<button onclick="filterByZona('norte')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Norte</button>
-<button onclick="filterByZona('sur')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Sur</button>
-<button onclick="filterByZona('este')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Este</button>
-<button onclick="filterByZona('oeste')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Oeste</button>
-</div>
-</div>
-</div>
+            <!-- Sugerencias -->
+            <div id="search-suggestions" class="search__suggestions is-hidden" role="listbox" aria-label="Sugerencias">
+              <div id="suggestions-content" class="search__suggestions-content"></div>
+            </div>
 
-<!-- Filtro Estado -->
-<div class="relative">
-<button onclick="toggleDropdown('estado-dropdown')" class="flex items-center justify-center gap-x-1 rounded-lg px-3 py-1.5 text-sm font-medium bg-slate-200/60 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:bg-primary/20 dark:hover:bg-primary/30">
-<span id="estado-text">Estado</span>
-<span class="material-symbols-outlined text-base">expand_more</span>
-</button>
-<div id="estado-dropdown" class="absolute top-full left-0 mt-2 w-36 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-50 hidden">
-<div class="py-2">
-<button onclick="filterByEstado('todos')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Todos</button>
-<button onclick="filterByEstado('recibida')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Recibida</button>
-<button onclick="filterByEstado('en-gestion')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">En Gestión</button>
-<button onclick="filterByEstado('resuelta')" class="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300">Resuelta</button>
-</div>
-</div>
-</div>
+            <!-- Contador resultados -->
+            <div id="results-counter" class="search__counter is-hidden">
+              <span id="results-text"></span>
+            </div>
+          </div>
+        </section>
 
-<!-- Botón para limpiar filtros -->
-<button onclick="clearAllFilters()" class="px-3 py-1.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">
-Limpiar filtros
-</button>
-</div>
-<a href="crear_denuncia.html" class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-<span class="material-symbols-outlined text-lg">add</span>
-<span>Crear Reporte</span>
-</a>
-</div>
+        <!-- Filtros + CTA -->
+        <section class="filters">
+          <div class="filters__group">
+            <!-- Tipo -->
+            <div class="dropdown" data-dropdown="tipo">
+              <button class="dropdown__toggle" type="button" data-toggle="tipo" aria-haspopup="true" aria-expanded="false">
+                <span id="tipo-text">Tipo de Problema</span>
+                <span class="material-symbols-outlined dropdown__chev" aria-hidden="true">expand_more</span>
+              </button>
+              <div id="tipo-dropdown" class="dropdown__menu">
+                <button class="dropdown__item" type="button" data-filter-tipo="todos">Todos</button>
+                <button class="dropdown__item" type="button" data-filter-tipo="infraestructura">Infraestructura</button>
+                <button class="dropdown__item" type="button" data-filter-tipo="iluminacion">Iluminación</button>
+                <button class="dropdown__item" type="button" data-filter-tipo="basura">Basura</button>
+                <button class="dropdown__item" type="button" data-filter-tipo="vandalismo">Vandalismo</button>
+              </div>
+            </div>
 
-<!-- Grid de tarjetas de reportes -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6" id="reportes-grid">
-<!-- Tarjeta 1: Acumulación de basura (31 likes) -->
-<div class="bg-white dark:bg-background-dark/50 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300" data-tipo="basura" data-zona="centro" data-estado="resuelta" data-likes="31">
-<div class="h-48 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ52lzDw7GqGuVu1shcqrLfFesqYsKBGwOfsFV1-OtFaZ4RgqfUbeR2ugs_71wVSnttinthA7oU-KZB5ieSwY98MDu-wMhg7A2SHupppNn0Ej7QMUbJ5iSdjpn6F-e6rbUKtWpsAIYue_LO73Pi9VH61jPs5MlshZly94IuGVnFyfemCmIpsTDXymdsWmiVRadjMHWGFfvtNile6D0CnNrwDaRWwe7uPnpuoiajr5mcdDTCucgKPZxpBDtHbHzpZGrU0fgmGTblUIK');"></div>
-<div class="p-6">
-<div class="flex justify-between items-start mb-2">
-<p class="text-sm text-primary font-semibold">Reporte #11223</p>
-<div class="flex items-center gap-2">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">Resuelta</span>
-<button onclick="toggleLike(this, 3)" class="like-btn flex items-center gap-1 px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors hover:bg-gray-300 dark:hover:bg-gray-600">
-<span class="like-icon text-lg text-gray-600 dark:text-gray-300">👍</span>
-<span class="like-count text-sm font-medium text-gray-600 dark:text-gray-300">31</span>
-</button>
-</div>
-</div>
-<h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">
-<a href="detalle_denuncia.html" class="hover:text-primary transition-colors">Acumulación de basura en esquina</a>
-</h3>
-<div class="mt-2 flex items-start gap-1">
-<span class="text-red-500 text-sm mt-0.5">📍</span>
-<p class="text-sm text-gray-600 dark:text-gray-400">Parque San Martín, sector juegos infantiles</p>
-</div>
-<div class="mt-1 flex items-center gap-1">
-<span class="text-blue-500 text-sm">🗺️</span>
-<span class="text-sm text-blue-600 dark:text-blue-400 font-medium">Zona Centro</span>
-</div>
-<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Reportado por Sofía Martínez</p>
-</div>
-</div>
+            <!-- Zona -->
+            <div class="dropdown" data-dropdown="zona">
+              <button class="dropdown__toggle" type="button" data-toggle="zona">
+                <span id="zona-text">Zona</span>
+                <span class="material-symbols-outlined dropdown__chev" aria-hidden="true">expand_more</span>
+              </button>
+              <div id="zona-dropdown" class="dropdown__menu">
+                <button class="dropdown__item" type="button" data-filter-zona="todos">Todas</button>
+                <button class="dropdown__item" type="button" data-filter-zona="centro">Centro</button>
+                <button class="dropdown__item" type="button" data-filter-zona="norte">Norte</button>
+                <button class="dropdown__item" type="button" data-filter-zona="sur">Sur</button>
+                <button class="dropdown__item" type="button" data-filter-zona="este">Este</button>
+                <button class="dropdown__item" type="button" data-filter-zona="oeste">Oeste</button>
+              </div>
+            </div>
 
-<!-- Tarjeta 2: Bache en la calle principal (24 likes) -->
-<div class="bg-white dark:bg-background-dark/50 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300" data-tipo="infraestructura" data-zona="norte" data-estado="en-gestion" data-likes="24">
-<div class="h-48 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXXT1T1-VKJ2f74L-MAxKLcRKxOmE91kpVkfK_QqEnNUGeKF_tWvlCwCC1Cm6nmfAL5SsBQV8ImDGknNb05aBmxamqqtbq9FBA_Hdu8ZlsImI7Q3Lq1m0CsguNb2sJNhldYt_yzKDOVc9Pw0PKqqXrvZ1sAukGAn2Jg_mybeHVisv3uwbs7EbkOo-tpFQw7CsK2JS3iy-vn0UcIJdDQzL83C7bvj3k3KKCLs5uOmbKzzwGMnc2WZiT3-RqDcQBqTtttjfkE7t72mVF');"></div>
-<div class="p-6">
-<div class="flex justify-between items-start mb-2">
-<p class="text-sm text-primary font-semibold">Reporte #12345</p>
-<div class="flex items-center gap-2">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">En Gestión</span>
-<button onclick="toggleLike(this, 1)" class="like-btn flex items-center gap-1 px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors hover:bg-gray-300 dark:hover:bg-gray-600">
-<span class="like-icon text-lg text-gray-600 dark:text-gray-300">👍</span>
-<span class="like-count text-sm font-medium text-gray-600 dark:text-gray-300">24</span>
-</button>
-</div>
-</div>
-<h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">
-<a href="detalle_denuncia.html" class="hover:text-primary transition-colors">Bache en la calle principal</a>
-</h3>
-<div class="mt-2 flex items-start gap-1">
-<span class="text-red-500 text-sm mt-0.5">📍</span>
-<p class="text-sm text-gray-600 dark:text-gray-400">Av. Libertador 1250, entre Mitre y San Martín</p>
-</div>
-<div class="mt-1 flex items-center gap-1">
-<span class="text-blue-500 text-sm">🗺️</span>
-<span class="text-sm text-blue-600 dark:text-blue-400 font-medium">Zona Sur</span>
-</div>
-<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Reportado por Ana García</p>
-</div>
-</div>
+            <!-- Estado -->
+            <div class="dropdown" data-dropdown="estado">
+              <button class="dropdown__toggle" type="button" data-toggle="estado">
+                <span id="estado-text">Estado</span>
+                <span class="material-symbols-outlined dropdown__chev" aria-hidden="true">expand_more</span>
+              </button>
+              <div id="estado-dropdown" class="dropdown__menu">
+                <button class="dropdown__item" type="button" data-filter-estado="todos">Todos</button>
+                <button class="dropdown__item" type="button" data-filter-estado="recibida">Recibida</button>
+                <button class="dropdown__item" type="button" data-filter-estado="en-gestion">En Gestión</button>
+                <button class="dropdown__item" type="button" data-filter-estado="resuelta">Resuelta</button>
+              </div>
+            </div>
 
-<!-- Tarjeta 3: Falta de iluminación (18 likes) -->
-<div class="bg-white dark:bg-background-dark/50 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300" data-tipo="iluminacion" data-zona="sur" data-estado="recibida" data-likes="18">
-<div class="h-48 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjvx5e6dMxi1jFcu7D8TTNmBoOyEoIgKdqJzJcOoyLERYu1-UianSfw6zYpRVB2-0PeWrwaX6vJypnlXyIsjE1vZt4flKPouCcwZ42iFmVZiuy3oXhvTHIkoIpEn-Jch7h_dFgRf43ghqIseOiPUmByE2X3kmx9vJsuVAwKXKMUAqnDcb3E8d93z8OCTISBC7d1X9g5ycNL4CbQXh4YeTzu8TgzEQPOK7Ddpx0wZyoZ-W6zCcav3ZffYnBtVD6CwZ0FQQV9YAaX5DM');"></div>
-<div class="p-6">
-<div class="flex justify-between items-start mb-2">
-<p class="text-sm text-primary font-semibold">Reporte #67890</p>
-<div class="flex items-center gap-2">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Recibida</span>
-<button onclick="toggleLike(this, 2)" class="like-btn flex items-center gap-1 px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors hover:bg-gray-300 dark:hover:bg-gray-600">
-<span class="like-icon text-lg text-gray-600 dark:text-gray-300">👍</span>
-<span class="like-count text-sm font-medium text-gray-600 dark:text-gray-300">18</span>
-</button>
-</div>
-</div>
-<h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">
-<a href="detalle_denuncia.html" class="hover:text-primary transition-colors">Falta de iluminación en el parque</a>
-</h3>
-<div class="mt-2 flex items-start gap-1">
-<span class="text-red-500 text-sm mt-0.5">📍</span>
-<p class="text-sm text-gray-600 dark:text-gray-400">Av. Central 3420, altura puente vehicular</p>
-</div>
-<div class="mt-1 flex items-center gap-1">
-<span class="text-blue-500 text-sm">🗺️</span>
-<span class="text-sm text-blue-600 dark:text-blue-400 font-medium">Zona Sur</span>
-</div>
-<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Reportado por Carlos López</p>
-</div>
-</div>
+            <!-- Limpiar -->
+            <button class="filters__clear" type="button" id="filters-clear">Limpiar filtros</button>
+          </div>
 
-<!-- Tarjeta 4: Graffiti en edificio histórico (12 likes) -->
-<div class="bg-white dark:bg-background-dark/50 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300" data-tipo="vandalismo" data-zona="centro" data-estado="en-gestion" data-likes="12">
-<div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-<div class="p-6">
-<div class="flex justify-between items-start mb-2">
-<p class="text-sm text-primary font-semibold">Reporte #44556</p>
-<div class="flex items-center gap-2">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300">En Gestión</span>
-<button onclick="toggleLike(this, 4)" class="like-btn flex items-center gap-1 px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors hover:bg-gray-300 dark:hover:bg-gray-600">
-<span class="like-icon text-lg text-gray-600 dark:text-gray-300">👍</span>
-<span class="like-count text-sm font-medium text-gray-600 dark:text-gray-300">12</span>
-</button>
-</div>
-</div>
-<h3 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">
-<a href="detalle_denuncia.html" class="hover:text-primary transition-colors">Graffiti en edificio histórico</a>
-</h3>
-<div class="mt-2 flex items-start gap-1">
-<span class="text-red-500 text-sm mt-0.5">📍</span>
-<p class="text-sm text-gray-600 dark:text-gray-400">Calle Histórica 789, frente a la catedral</p>
-</div>
-<div class="mt-1 flex items-center gap-1">
-<span class="text-blue-500 text-sm">🗺️</span>
-<span class="text-sm text-blue-600 dark:text-blue-400 font-medium">Zona Centro</span>
-</div>
-<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Reportado por Miguel Torres</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-<div class="py-8 text-center text-sm text-slate-500 dark:text-slate-400">
-<div class="flex justify-center gap-6 mb-4">
-<a class="hover:text-primary" href="#">Contacto</a>
-<a class="hover:text-primary" href="#">Privacidad</a>
-<a class="hover:text-primary" href="#">Términos de Uso</a>
-</div>
-<p>© 2024 CityConnect. Todos los derechos reservados.</p>
-</div>
-</div>
-</footer>
+          <a href="crear_denuncia.html" class="button button--primary">
+            <span class="material-symbols-outlined button__icon" aria-hidden="true">add</span>
+            <span>Crear Reporte</span>
+          </a>
+        </section>
 
-</div>
-
-<script>
-// Variables globales para filtros
-let currentFilters = {
-    tipo: 'todos',
-    zona: 'todos', 
-    estado: 'todos'
-};
-
-// Base de datos de sugerencias de búsqueda
-const searchDatabase = [
-    { type: 'problema', value: 'Bache en la calle principal', category: 'Problemas' },
-    { type: 'problema', value: 'Falta de iluminación en el parque', category: 'Problemas' },
-    { type: 'problema', value: 'Acumulación de basura en esquina', category: 'Problemas' },
-    { type: 'problema', value: 'Graffiti en edificio histórico', category: 'Problemas' },
-    { type: 'direccion', value: 'Av. Libertador 1250', category: 'Direcciones' },
-    { type: 'direccion', value: 'Av. Central 3420', category: 'Direcciones' },
-    { type: 'direccion', value: 'Parque San Martín', category: 'Direcciones' },
-    { type: 'direccion', value: 'Calle Histórica 789', category: 'Direcciones' },
-    { type: 'zona', value: 'Zona Centro', category: 'Zonas' },
-    { type: 'zona', value: 'Zona Norte', category: 'Zonas' },
-    { type: 'zona', value: 'Zona Sur', category: 'Zonas' },
-    { type: 'zona', value: 'Zona Este', category: 'Zonas' },
-    { type: 'zona', value: 'Zona Oeste', category: 'Zonas' },
-    { type: 'reporte', value: 'Reporte #12345', category: 'Reportes' },
-    { type: 'reporte', value: 'Reporte #67890', category: 'Reportes' },
-    { type: 'reporte', value: 'Reporte #11223', category: 'Reportes' },
-    { type: 'reporte', value: 'Reporte #44556', category: 'Reportes' },
-    { type: 'persona', value: 'Ana García', category: 'Reportado por' },
-    { type: 'persona', value: 'Carlos López', category: 'Reportado por' },
-    { type: 'persona', value: 'Sofía Martínez', category: 'Reportado por' },
-    { type: 'persona', value: 'Miguel Torres', category: 'Reportado por' },
-];
-
-// Función para mostrar sugerencias
-function showSearchSuggestions(searchTerm) {
-    const suggestionsContainer = document.getElementById('search-suggestions');
-    const suggestionsContent = document.getElementById('suggestions-content');
-    
-    if (searchTerm.length < 2) {
-        suggestionsContainer.classList.add('hidden');
-        return;
-    }
-    
-    const filteredSuggestions = searchDatabase.filter(item => 
-        item.value.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    
-    if (filteredSuggestions.length === 0) {
-        suggestionsContainer.classList.add('hidden');
-        return;
-    }
-    
-    // Agrupar por categoría
-    const groupedSuggestions = {};
-    filteredSuggestions.forEach(item => {
-        if (!groupedSuggestions[item.category]) {
-            groupedSuggestions[item.category] = [];
-        }
-        groupedSuggestions[item.category].push(item);
-    });
-    
-    let html = '';
-    Object.keys(groupedSuggestions).forEach(category => {
-        html += `<div class="px-3 py-1 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">${category}</div>`;
-        groupedSuggestions[category].forEach(item => {
-            const highlightedValue = item.value.replace(
-                new RegExp(`(${searchTerm})`, 'gi'),
-                '<mark class="bg-yellow-200 dark:bg-yellow-800 text-slate-900 dark:text-white">$1</mark>'
-            );
-            html += `
-                <button 
-                    class="w-full px-3 py-2 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center gap-2"
-                    onclick="selectSearchSuggestion('${item.value.replace(/'/g, "\\'")}')"
-                >
-                    <span class="text-primary material-symbols-outlined text-base">
-                        ${item.type === 'problema' ? 'report_problem' : 
-                          item.type === 'direccion' ? 'location_on' : 
-                          item.type === 'reporte' ? 'receipt' : 'person'}
-                    </span>
-                    <span>${highlightedValue}</span>
-                </button>
-            `;
-        });
-    });
-    
-    suggestionsContent.innerHTML = html;
-    suggestionsContainer.classList.remove('hidden');
-}
-
-// Función para seleccionar una sugerencia
-function selectSearchSuggestion(suggestion) {
-    const searchInput = document.getElementById('search-input');
-    searchInput.value = suggestion;
-    document.getElementById('search-suggestions').classList.add('hidden');
-    searchReports(suggestion);
-    updateSearchUI(suggestion);
-}
-
-// Función para limpiar búsqueda
-function clearSearch() {
-    const searchInput = document.getElementById('search-input');
-    searchInput.value = '';
-    document.getElementById('search-suggestions').classList.add('hidden');
-    document.getElementById('clear-search').classList.add('hidden');
-    document.getElementById('results-counter').classList.add('hidden');
-    searchReports('');
-}
-
-// Función para actualizar UI de búsqueda
-function updateSearchUI(searchTerm) {
-    const clearButton = document.getElementById('clear-search');
-    const resultsCounter = document.getElementById('results-counter');
-    const resultsText = document.getElementById('results-text');
-    
-    if (searchTerm.length > 0) {
-        clearButton.classList.remove('hidden');
-        
-        // Contar resultados visibles
-        const visibleCards = Array.from(document.querySelectorAll('#reportes-grid > div')).filter(card => 
-            card.style.display !== 'none'
-        );
-        
-        resultsCounter.classList.remove('hidden');
-        resultsText.textContent = `${visibleCards.length} resultado(s) encontrado(s) para "${searchTerm}"`;
-    } else {
-        clearButton.classList.add('hidden');
-        resultsCounter.classList.add('hidden');
-    }
-}
-
-// Función para manejar el toggle de like
-function toggleLike(button, reportId) {
-    const icon = button.querySelector('.like-icon');
-    const countSpan = button.querySelector('.like-count');
-    let currentCount = parseInt(countSpan.textContent);
-    
-    // Verificar si ya está liked (usando localStorage para persistencia)
-    const isLiked = localStorage.getItem(`liked_report_${reportId}`) === 'true';
-    
-    if (!isLiked) {
-        // Dar like
-        button.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'hover:bg-gray-300', 'dark:hover:bg-gray-600');
-        button.classList.add('bg-green-100', 'dark:bg-green-900', 'hover:bg-green-200', 'dark:hover:bg-green-800');
-        icon.style.filter = 'hue-rotate(90deg) brightness(1.2)'; // Hace el emoji más verde
-        countSpan.style.color = '#22c55e'; // verde
-        countSpan.textContent = currentCount + 1;
-        
-        // Actualizar el data-likes del elemento
-        const card = button.closest('[data-likes]');
-        if (card) {
-            card.setAttribute('data-likes', currentCount + 1);
-        }
-        
-        // Guardar estado
-        localStorage.setItem(`liked_report_${reportId}`, 'true');
-        
-        // Añadir pequeña animación
-        button.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-            button.style.transform = 'scale(1)';
-        }, 150);
-        
-        // Reordenar por likes después del cambio
-        setTimeout(() => {
-            sortByLikes();
-        }, 200);
-        
-    } else {
-        // Quitar like
-        button.classList.remove('bg-green-100', 'dark:bg-green-900', 'hover:bg-green-200', 'dark:hover:bg-green-800');
-        button.classList.add('bg-gray-200', 'dark:bg-gray-700', 'hover:bg-gray-300', 'dark:hover:bg-gray-600');
-        icon.style.filter = '';
-        countSpan.style.color = '';
-        countSpan.textContent = currentCount - 1;
-        
-        // Actualizar el data-likes del elemento
-        const card = button.closest('[data-likes]');
-        if (card) {
-            card.setAttribute('data-likes', currentCount - 1);
-        }
-        
-        // Remover estado
-        localStorage.setItem(`liked_report_${reportId}`, 'false');
-        
-        // Reordenar por likes después del cambio
-        setTimeout(() => {
-            sortByLikes();
-        }, 200);
-    }
-}
-
-// Función para ordenar por likes
-function sortByLikes() {
-    const grid = document.getElementById('reportes-grid');
-    const cards = Array.from(grid.children);
-    
-    cards.sort((a, b) => {
-        const likesA = parseInt(a.getAttribute('data-likes'));
-        const likesB = parseInt(b.getAttribute('data-likes'));
-        return likesB - likesA; // Orden descendente
-    });
-    
-    // Limpiar grid y agregar tarjetas ordenadas
-    grid.innerHTML = '';
-    cards.forEach(card => {
-        grid.appendChild(card);
-    });
-}
-
-// Funciones para filtros
-function toggleDropdown(dropdownId) {
-    // Cerrar otros dropdowns
-    const allDropdowns = ['tipo-dropdown', 'zona-dropdown', 'estado-dropdown'];
-    allDropdowns.forEach(id => {
-        if (id !== dropdownId) {
-            document.getElementById(id).classList.add('hidden');
-        }
-    });
-    
-    // Toggle el dropdown actual
-    const dropdown = document.getElementById(dropdownId);
-    dropdown.classList.toggle('hidden');
-}
-
-function filterByTipo(tipo) {
-    currentFilters.tipo = tipo;
-    document.getElementById('tipo-text').textContent = 
-        tipo === 'todos' ? 'Tipo de Problema' : 
-        tipo === 'infraestructura' ? 'Infraestructura' :
-        tipo === 'iluminacion' ? 'Iluminación' :
-        tipo === 'basura' ? 'Basura' : 'Vandalismo';
-    
-    document.getElementById('tipo-dropdown').classList.add('hidden');
-    applyFilters();
-}
-
-function filterByZona(zona) {
-    currentFilters.zona = zona;
-    document.getElementById('zona-text').textContent = 
-        zona === 'todos' ? 'Zona' : zona.charAt(0).toUpperCase() + zona.slice(1);
-    
-    document.getElementById('zona-dropdown').classList.add('hidden');
-    applyFilters();
-}
-
-function filterByEstado(estado) {
-    currentFilters.estado = estado;
-    document.getElementById('estado-text').textContent = 
-        estado === 'todos' ? 'Estado' :
-        estado === 'recibida' ? 'Recibida' :
-        estado === 'en-gestion' ? 'En Gestión' : 'Resuelta';
-    
-    document.getElementById('estado-dropdown').classList.add('hidden');
-    applyFilters();
-}
-
-function clearAllFilters() {
-    currentFilters = { tipo: 'todos', zona: 'todos', estado: 'todos' };
-    document.getElementById('tipo-text').textContent = 'Tipo de Problema';
-    document.getElementById('zona-text').textContent = 'Zona';
-    document.getElementById('estado-text').textContent = 'Estado';
-    applyFilters();
-}
-
-function applyFilters() {
-    const cards = document.querySelectorAll('#reportes-grid > div');
-    
-    cards.forEach(card => {
-        const cardTipo = card.getAttribute('data-tipo');
-        const cardZona = card.getAttribute('data-zona');
-        const cardEstado = card.getAttribute('data-estado');
-        
-        const showTipo = currentFilters.tipo === 'todos' || cardTipo === currentFilters.tipo;
-        const showZona = currentFilters.zona === 'todos' || cardZona === currentFilters.zona;
-        const showEstado = currentFilters.estado === 'todos' || cardEstado === currentFilters.estado;
-        
-        if (showTipo && showZona && showEstado) {
-            card.style.display = 'block';
-            card.style.opacity = '1';
-        } else {
-            card.style.display = 'none';
-            card.style.opacity = '0';
-        }
-    });
-}
-
-// Función de búsqueda mejorada
-function searchReports(searchTerm) {
-    const cards = document.querySelectorAll('#reportes-grid > div');
-    const term = searchTerm.toLowerCase();
-    let visibleCount = 0;
-    
-    cards.forEach(card => {
-        const title = card.querySelector('h3 a').textContent.toLowerCase();
-        const address = card.querySelector('.text-red-500').nextElementSibling.textContent.toLowerCase();
-        const reportNumber = card.querySelector('.text-primary').textContent.toLowerCase();
-        const reportedBy = card.querySelector('p:last-child').textContent.toLowerCase();
-        
-        const matches = title.includes(term) || 
-                       address.includes(term) || 
-                       reportNumber.includes(term) ||
-                       reportedBy.includes(term) ||
-                       term === '';
-        
-        if (matches) {
-            // Solo mostrar si también pasa los filtros actuales
-            const cardTipo = card.getAttribute('data-tipo');
-            const cardZona = card.getAttribute('data-zona');
-            const cardEstado = card.getAttribute('data-estado');
-            
-            const showTipo = currentFilters.tipo === 'todos' || cardTipo === currentFilters.tipo;
-            const showZona = currentFilters.zona === 'todos' || cardZona === currentFilters.zona;
-            const showEstado = currentFilters.estado === 'todos' || cardEstado === currentFilters.estado;
-            
-            if (showTipo && showZona && showEstado) {
-                card.style.display = 'block';
-                card.style.opacity = '1';
-                card.style.transform = 'scale(1)';
-                visibleCount++;
-                
-                // Efecto de highlight si hay término de búsqueda
-                if (term && term.length > 0) {
-                    card.style.boxShadow = '0 0 0 2px #13a4ec40';
-                    card.style.borderColor = '#13a4ec';
-                } else {
-                    card.style.boxShadow = '';
-                    card.style.borderColor = '';
-                }
-            } else {
-                card.style.display = 'none';
-            }
-        } else {
-            card.style.display = 'none';
-            card.style.opacity = '0';
-        }
-    });
-    
-    // Actualizar contador
-    updateSearchUI(searchTerm);
-    
-    // Mostrar mensaje si no hay resultados
-    showNoResultsMessage(visibleCount, searchTerm);
-}
-
-// Función para mostrar mensaje de "sin resultados"
-function showNoResultsMessage(count, searchTerm) {
-    let existingMessage = document.getElementById('no-results-message');
-    
-    if (count === 0 && searchTerm.length > 0) {
-        if (!existingMessage) {
-            const message = document.createElement('div');
-            message.id = 'no-results-message';
-            message.className = 'col-span-full text-center py-12';
-            message.innerHTML = `
-                <div class="text-slate-400 dark:text-slate-500">
-                    <span class="material-symbols-outlined text-6xl mb-4 block">search_off</span>
-                    <h3 class="text-lg font-semibold mb-2">No se encontraron resultados</h3>
-                    <p class="text-sm">Intenta con otros términos de búsqueda o ajusta los filtros</p>
+        <!-- Grid de tarjetas -->
+        <section id="reportes-grid" class="cards">
+          <!-- Card 1 -->
+          <article class="card" data-tipo="basura" data-zona="centro" data-estado="resuelta" data-likes="31">
+            <div class="card__media" style="--img:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ52lzDw7GqGuVu1shcqrLfFesqYsKBGwOfsFV1-OtFaZ4RgqfUbeR2ugs_71wVSnttinthA7oU-KZB5ieSwY98MDu-wMhg7A2SHupppNn0Ej7QMUbJ5iSdjpn6F-e6rbUKtWpsAIYue_LO73Pi9VH61jPs5MlshZly94IuGVnFyfemCmIpsTDXymdsWmiVRadjMHWGFfvtNile6D0CnNrwDaRWwe7uPnpuoiajr5mcdDTCucgKPZxpBDtHbHzpZGrU0fgmGTblUIK')"></div>
+            <div class="card__body">
+              <div class="card__head">
+                <p class="card__id">Reporte #11223</p>
+                <div class="card__meta">
+                  <span class="badge badge--done">Resuelta</span>
+                  <button class="like like--btn" type="button" aria-pressed="false" aria-label="Apoyar reporte" data-report-id="3">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">31</span>
+                  </button>
                 </div>
-            `;
-            document.getElementById('reportes-grid').appendChild(message);
-        }
-    } else {
-        if (existingMessage) {
-            existingMessage.remove();
-        }
-    }
-}
+              </div>
+              <h3 class="card__title"><a class="card__link" href="detalle_denuncia.html">Acumulación de basura en esquina</a></h3>
+              <div class="card__row">
+                <span class="card__pin" aria-hidden="true">📍</span>
+                <p class="card__text">Parque San Martín, sector juegos infantiles</p>
+              </div>
+              <div class="card__row">
+                <span class="card__map" aria-hidden="true">🗺️</span>
+                <span class="card__zone">Zona Centro</span>
+              </div>
+              <p class="card__author">Reportado por Sofía Martínez</p>
+            </div>
+          </article>
 
-// Cerrar dropdowns al hacer clic fuera
-document.addEventListener('click', function(event) {
-    const dropdowns = ['tipo-dropdown', 'zona-dropdown', 'estado-dropdown'];
-    const buttons = event.target.closest('button');
-    
-    // Cerrar dropdowns de filtros
-    if (!buttons || !buttons.onclick) {
-        dropdowns.forEach(id => {
-            document.getElementById(id).classList.add('hidden');
-        });
-    }
-    
-    // Cerrar sugerencias de búsqueda si se hace clic fuera
-    const searchContainer = event.target.closest('#search-input, #search-suggestions');
-    if (!searchContainer) {
-        document.getElementById('search-suggestions').classList.add('hidden');
-    }
-});
+          <!-- Card 2 -->
+          <article class="card" data-tipo="infraestructura" data-zona="norte" data-estado="en-gestion" data-likes="24">
+            <div class="card__media" style="--img:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXXT1T1-VKJ2f74L-MAxKLcRKxOmE91kpVkfK_QqEnNUGeKF_tWvlCwCC1Cm6nmfAL5SsBQV8ImDGknNb05aBmxamqqtbq9FBA_Hdu8ZlsImI7Q3Lq1m0CsguNb2sJNhldYt_yzKDOVc9Pw0PKqqXrvZ1sAukGAn2Jg_mybeHVisv3uwbs7EbkOo-tpFQw7CsK2JS3iy-vn0UcIJdDQzL83C7bvj3k3KKCLs5uOmbKzzwGMnc2WZiT3-RqDcQBqTtttjfkE7t72mVF')"></div>
+            <div class="card__body">
+              <div class="card__head">
+                <p class="card__id">Reporte #12345</p>
+                <div class="card__meta">
+                  <span class="badge badge--review">En Gestión</span>
+                  <button class="like like--btn" type="button" aria-pressed="false" aria-label="Apoyar reporte" data-report-id="1">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">24</span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="card__title"><a class="card__link" href="detalle_denuncia.html">Bache en la calle principal</a></h3>
+              <div class="card__row">
+                <span class="card__pin" aria-hidden="true">📍</span>
+                <p class="card__text">Av. Libertador 1250, entre Mitre y San Martín</p>
+              </div>
+              <div class="card__row">
+                <span class="card__map" aria-hidden="true">🗺️</span>
+                <span class="card__zone">Zona Sur</span>
+              </div>
+              <p class="card__author">Reportado por Ana García</p>
+            </div>
+          </article>
 
-// Verificar estados de like al cargar la página
-document.addEventListener('DOMContentLoaded', function() {
-    const likeButtons = document.querySelectorAll('.like-btn');
-    
-    likeButtons.forEach((button) => {
-        // Extraer el reportId del atributo onclick
-        const onclickAttr = button.getAttribute('onclick');
-        const reportIdMatch = onclickAttr.match(/toggleLike\(this,\s*(\d+)\)/);
-        
-        if (reportIdMatch) {
-            const reportId = parseInt(reportIdMatch[1]);
-            const isLiked = localStorage.getItem(`liked_report_${reportId}`) === 'true';
-            
-            if (isLiked) {
-                const icon = button.querySelector('.like-icon');
-                const countSpan = button.querySelector('.like-count');
-                
-                button.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'hover:bg-gray-300', 'dark:hover:bg-gray-600');
-                button.classList.add('bg-green-100', 'dark:bg-green-900', 'hover:bg-green-200', 'dark:hover:bg-green-800');
-                icon.style.filter = 'hue-rotate(90deg) brightness(1.2)';
-                countSpan.style.color = '#22c55e';
-            }
-        }
-    });
-    
-    // Configurar búsqueda interactiva
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-        // Evento de escritura con debounce
-        let searchTimeout;
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value;
-            
-            // Limpiar timeout anterior
-            clearTimeout(searchTimeout);
-            
-            // Mostrar sugerencias inmediatamente si hay texto
-            if (searchTerm.length >= 2) {
-                showSearchSuggestions(searchTerm);
-            } else {
-                document.getElementById('search-suggestions').classList.add('hidden');
-            }
-            
-            // Búsqueda con delay para mejor performance
-            searchTimeout = setTimeout(() => {
-                searchReports(searchTerm);
-            }, 300);
-        });
-        
-        // Navegación con teclado en sugerencias
-        searchInput.addEventListener('keydown', function(e) {
-            const suggestions = document.querySelectorAll('#search-suggestions button');
-            const suggestionsContainer = document.getElementById('search-suggestions');
-            
-            if (e.key === 'Escape') {
-                suggestionsContainer.classList.add('hidden');
-                this.blur();
-            } else if (e.key === 'ArrowDown' && !suggestionsContainer.classList.contains('hidden')) {
-                e.preventDefault();
-                if (suggestions.length > 0) {
-                    suggestions[0].focus();
-                }
-            }
-        });
-        
-        // Focus y blur events
-        searchInput.addEventListener('focus', function() {
-            if (this.value.length >= 2) {
-                showSearchSuggestions(this.value);
-            }
-        });
-    }
-    
-    // Ordenar inicialmente por likes
-    sortByLikes();
-});
-</script>
+          <!-- Card 3 -->
+          <article class="card" data-tipo="iluminacion" data-zona="sur" data-estado="recibida" data-likes="18">
+            <div class="card__media" style="--img:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjvx5e6dMxi1jFcu7D8TTNmBoOyEoIgKdqJzJcOoyLERYu1-UianSfw6zYpRVB2-0PeWrwaX6vJypnlXyIsjE1vZt4flKPouCcwZ42iFmVZiuy3oXhvTHIkoIpEn-Jch7h_dFgRf43ghqIseOiPUmByE2X3kmx9vJsuVAwKXKMUAqnDcb3E8d93z8OCTISBC7d1X9g5ycNL4CbQXh4YeTzu8TgzEQPOK7Ddpx0wZyoZ-W6zCcav3ZffYnBtVD6CwZ0FQQV9YAaX5DM')"></div>
+            <div class="card__body">
+              <div class="card__head">
+                <p class="card__id">Reporte #67890</p>
+                <div class="card__meta">
+                  <span class="badge badge--info">Recibida</span>
+                  <button class="like like--btn" type="button" aria-pressed="false" aria-label="Apoyar reporte" data-report-id="2">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">18</span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="card__title"><a class="card__link" href="detalle_denuncia.html">Falta de iluminación en el parque</a></h3>
+              <div class="card__row">
+                <span class="card__pin" aria-hidden="true">📍</span>
+                <p class="card__text">Av. Central 3420, altura puente vehicular</p>
+              </div>
+              <div class="card__row">
+                <span class="card__map" aria-hidden="true">🗺️</span>
+                <span class="card__zone">Zona Sur</span>
+              </div>
+              <p class="card__author">Reportado por Carlos López</p>
+            </div>
+          </article>
 
-<style>
-.like-btn {
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
+          <!-- Card 4 -->
+          <article class="card" data-tipo="vandalismo" data-zona="centro" data-estado="en-gestion" data-likes="12">
+            <div class="card__media" style="--img:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1000&q=80')"></div>
+            <div class="card__body">
+              <div class="card__head">
+                <p class="card__id">Reporte #44556</p>
+                <div class="card__meta">
+                  <span class="badge badge--review">En Gestión</span>
+                  <button class="like like--btn" type="button" aria-pressed="false" aria-label="Apoyar reporte" data-report-id="4">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">12</span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="card__title"><a class="card__link" href="detalle_denuncia.html">Graffiti en edificio histórico</a></h3>
+              <div class="card__row">
+                <span class="card__pin" aria-hidden="true">📍</span>
+                <p class="card__text">Calle Histórica 789, frente a la catedral</p>
+              </div>
+              <div class="card__row">
+                <span class="card__map" aria-hidden="true">🗺️</span>
+                <span class="card__zone">Zona Centro</span>
+              </div>
+              <p class="card__author">Reportado por Miguel Torres</p>
+            </div>
+          </article>
+        </section>
 
-.like-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+      </div>
+    </div>
+  </main>
 
-.like-btn:active {
-    transform: scale(0.98);
-}
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <nav class="site-footer__nav" aria-label="Legal">
+        <a class="site-footer__link" href="#">Contacto</a>
+        <a class="site-footer__link" href="#">Privacidad</a>
+        <a class="site-footer__link" href="#">Términos de Uso</a>
+      </nav>
+      <p class="site-footer__copy">© 2024 CityConnect. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
-.like-icon {
-    transition: all 0.2s ease;
-    font-size: 16px;
-}
+</div>
 
-.like-count {
-    transition: all 0.2s ease;
-    font-weight: 600;
-}
-
-/* Estilos para modo oscuro */
-.dark .like-btn {
-    border-color: #374151;
-}
-</style>
-
-</body></html>
+<!-- JS separado -->
+<script src="../js/ver_denuncias.js" defer></script>
+</body>
+</html>

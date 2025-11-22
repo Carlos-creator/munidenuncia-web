@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CityConnect — Reportes Públicos</title>
+
+  <!-- Fuentes / Iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- CSS de la página -->
+  <link rel="stylesheet" href="../css/ver_denuncias.css"/>
+
+  <!-- Solo para los símbolos de Google (puedes moverlo a tu .css) -->
+  <style>
+    .material-symbols-outlined{
+      font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+    }
+  </style>
+</head>
+
+<body class="theme theme--light">
+<div class="layout">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <!-- Marca -->
+      <div class="site-header__brand">
+        <a class="brand" href="pagina_inicio.html" aria-label="Ir al inicio">
+          <span class="brand__logo" aria-hidden="true">
+            <svg class="brand__logo-svg" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="brand__name">MuniDenuncia</span>
+        </a>
+      </div>
+
+      <!-- Nav centrado (desktop) -->
+      <nav class="nav nav--center nav--md" aria-label="Principal">
+        <a class="nav__link" href="pagina_inicio.html">Inicio</a>
+        <a class="nav__link nav__link--active" href="ver_denuncias.html">Reportar</a>
+        <a class="nav__link" href="seguimiento_personal.html">Mis Reportes</a>
+        <a class="nav__link" href="#ayuda">Ayuda</a>
+      </nav>
+
+      <!-- Acciones derecha -->
+      <div class="site-header__actions">
+        <div class="search search--header">
+          <label class="search__label">
+            <span class="search__icon material-symbols-outlined" aria-hidden="true">search</span>
+            <input class="search__input" type="text" placeholder="Buscar" aria-label="Buscar"/>
+          </label>
+        </div>
+        <div class="avatar" style='--avatar-url:url("https://lh3.googleusercontent.com/aida-public/AB6AXuDUKJbIAjd7mhfSmHNG6YGFl7UaUpQDqKfjfk4GosU2koJpkQdY04nxx4JkhSh1gjkRY-_rK1oMf-aaB6lFfNmfQmpx2eY2MmGh8LyuLSLgm_P730pCqfDyNRlVHIKZPGC0dKSJYEaE20IheQr8SZRoelcN93CtvwqvKQlZYU0bHUo29UncKznFm6OdZfF66btUXjXz9K2Lh1hZYkmNNalsSRJUD6VuxLcNsjK7K_e5Zs64DOZkqcrpYBdklexitZIC_UrB3jxTZDN0");'></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="container page">
+      <div class="page__inner page__inner--narrow">
+
+        <!-- Título -->
+        <header class="page-header">
+          <h1 class="page-header__title">Reportes Públicos</h1>
+          <p class="page-header__subtitle">Explora los reportes de otros ciudadanos y apoya aquellos que te interesen.</p>
+        </header>
+
+        <!-- Buscador -->
+        <section class="search search--main">
+          <div class="search__field">
+            <label class="search__label">
+              <span class="search__icon material-symbols-outlined" aria-hidden="true">search</span>
+              <input
+                id="search-input"
+                class="search__input search__input--xl"
+                type="text"
+                placeholder="Buscar por dirección, problema o número de reporte…"
+                aria-label="Buscar por dirección, problema o número de reporte"
+                autocomplete="off"
+              />
+              <button id="clear-search" class="search__clear is-hidden" type="button" aria-label="Limpiar búsqueda">
+                <span class="material-symbols-outlined">close</span>
+              </button>
+            </label>
+
+            <!-- Sugerencias -->
+            <div id="search-suggestions" class="search__suggestions is-hidden" role="listbox" aria-label="Sugerencias">
+              <div id="suggestions-content" class="search__suggestions-content"></div>
+            </div>
+
+            <!-- Contador resultados -->
+            <div id="results-counter" class="search__counter is-hidden">
+              <span id="results-text"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filtros + CTA -->
+        <section class="filters">
+          <div class="filters__group">
+            <!-- Tipo -->
+            <div class="dropdown" data-dropdown="tipo">
+              <button class="dropdown__toggle" type="button" data-toggle="tipo" aria-haspopup="true" aria-expanded="false">
+                <span id="tipo-text">Tipo de Problema</span>
+                <span class="material-symbols-outlined dropdown__chev" aria-hidden="true">expand_more</span>
+              </button>
+              <div id="tipo-dropdown" class="dropdown__menu">
+                <button class="dropdown__item" type="button" data-filter-tipo="todos">Todos</button>
+                <button class="dropdown__item" type="button" data-filter-tipo="infraestructura">Infraestructura</button>
+                <button class="dropdown__item" type="button" data-filter-tipo="iluminacion">Iluminación</button>
+                <button class="dropdown__item" type="button" data-filter-tipo="basura">Basura</button>
+                <button class="dropdown__item" type="button" data-filter-tipo="vandalismo">Vandalismo</button>
+              </div>
+            </div>
+
+            <!-- Zona -->
+            <div class="dropdown" data-dropdown="zona">
+              <button class="dropdown__toggle" type="button" data-toggle="zona">
+                <span id="zona-text">Zona</span>
+                <span class="material-symbols-outlined dropdown__chev" aria-hidden="true">expand_more</span>
+              </button>
+              <div id="zona-dropdown" class="dropdown__menu">
+                <button class="dropdown__item" type="button" data-filter-zona="todos">Todas</button>
+                <button class="dropdown__item" type="button" data-filter-zona="centro">Centro</button>
+                <button class="dropdown__item" type="button" data-filter-zona="norte">Norte</button>
+                <button class="dropdown__item" type="button" data-filter-zona="sur">Sur</button>
+                <button class="dropdown__item" type="button" data-filter-zona="este">Este</button>
+                <button class="dropdown__item" type="button" data-filter-zona="oeste">Oeste</button>
+              </div>
+            </div>
+
+            <!-- Estado -->
+            <div class="dropdown" data-dropdown="estado">
+              <button class="dropdown__toggle" type="button" data-toggle="estado">
+                <span id="estado-text">Estado</span>
+                <span class="material-symbols-outlined dropdown__chev" aria-hidden="true">expand_more</span>
+              </button>
+              <div id="estado-dropdown" class="dropdown__menu">
+                <button class="dropdown__item" type="button" data-filter-estado="todos">Todos</button>
+                <button class="dropdown__item" type="button" data-filter-estado="recibida">Recibida</button>
+                <button class="dropdown__item" type="button" data-filter-estado="en-gestion">En Gestión</button>
+                <button class="dropdown__item" type="button" data-filter-estado="resuelta">Resuelta</button>
+              </div>
+            </div>
+
+            <!-- Limpiar -->
+            <button class="filters__clear" type="button" id="filters-clear">Limpiar filtros</button>
+          </div>
+
+          <a href="crear_denuncia.html" class="button button--primary">
+            <span class="material-symbols-outlined button__icon" aria-hidden="true">add</span>
+            <span>Crear Reporte</span>
+          </a>
+        </section>
+
+        <!-- Grid de tarjetas -->
+        <section id="reportes-grid" class="cards">
+          <!-- Card 1 -->
+          <article class="card" data-tipo="basura" data-zona="centro" data-estado="resuelta" data-likes="31">
+            <div class="card__media" style="--img:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ52lzDw7GqGuVu1shcqrLfFesqYsKBGwOfsFV1-OtFaZ4RgqfUbeR2ugs_71wVSnttinthA7oU-KZB5ieSwY98MDu-wMhg7A2SHupppNn0Ej7QMUbJ5iSdjpn6F-e6rbUKtWpsAIYue_LO73Pi9VH61jPs5MlshZly94IuGVnFyfemCmIpsTDXymdsWmiVRadjMHWGFfvtNile6D0CnNrwDaRWwe7uPnpuoiajr5mcdDTCucgKPZxpBDtHbHzpZGrU0fgmGTblUIK')"></div>
+            <div class="card__body">
+              <div class="card__head">
+                <p class="card__id">Reporte #11223</p>
+                <div class="card__meta">
+                  <span class="badge badge--done">Resuelta</span>
+                  <button class="like like--btn" type="button" aria-pressed="false" aria-label="Apoyar reporte" data-report-id="3">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">31</span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="card__title"><a class="card__link" href="detalle_denuncia.html">Acumulación de basura en esquina</a></h3>
+              <div class="card__row">
+                <span class="card__pin" aria-hidden="true">📍</span>
+                <p class="card__text">Parque San Martín, sector juegos infantiles</p>
+              </div>
+              <div class="card__row">
+                <span class="card__map" aria-hidden="true">🗺️</span>
+                <span class="card__zone">Zona Centro</span>
+              </div>
+              <p class="card__author">Reportado por Sofía Martínez</p>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card" data-tipo="infraestructura" data-zona="norte" data-estado="en-gestion" data-likes="24">
+            <div class="card__media" style="--img:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXXT1T1-VKJ2f74L-MAxKLcRKxOmE91kpVkfK_QqEnNUGeKF_tWvlCwCC1Cm6nmfAL5SsBQV8ImDGknNb05aBmxamqqtbq9FBA_Hdu8ZlsImI7Q3Lq1m0CsguNb2sJNhldYt_yzKDOVc9Pw0PKqqXrvZ1sAukGAn2Jg_mybeHVisv3uwbs7EbkOo-tpFQw7CsK2JS3iy-vn0UcIJdDQzL83C7bvj3k3KKCLs5uOmbKzzwGMnc2WZiT3-RqDcQBqTtttjfkE7t72mVF')"></div>
+            <div class="card__body">
+              <div class="card__head">
+                <p class="card__id">Reporte #12345</p>
+                <div class="card__meta">
+                  <span class="badge badge--review">En Gestión</span>
+                  <button class="like like--btn" type="button" aria-pressed="false" aria-label="Apoyar reporte" data-report-id="1">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">24</span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="card__title"><a class="card__link" href="detalle_denuncia.html">Bache en la calle principal</a></h3>
+              <div class="card__row">
+                <span class="card__pin" aria-hidden="true">📍</span>
+                <p class="card__text">Av. Libertador 1250, entre Mitre y San Martín</p>
+              </div>
+              <div class="card__row">
+                <span class="card__map" aria-hidden="true">🗺️</span>
+                <span class="card__zone">Zona Sur</span>
+              </div>
+              <p class="card__author">Reportado por Ana García</p>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card" data-tipo="iluminacion" data-zona="sur" data-estado="recibida" data-likes="18">
+            <div class="card__media" style="--img:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjvx5e6dMxi1jFcu7D8TTNmBoOyEoIgKdqJzJcOoyLERYu1-UianSfw6zYpRVB2-0PeWrwaX6vJypnlXyIsjE1vZt4flKPouCcwZ42iFmVZiuy3oXhvTHIkoIpEn-Jch7h_dFgRf43ghqIseOiPUmByE2X3kmx9vJsuVAwKXKMUAqnDcb3E8d93z8OCTISBC7d1X9g5ycNL4CbQXh4YeTzu8TgzEQPOK7Ddpx0wZyoZ-W6zCcav3ZffYnBtVD6CwZ0FQQV9YAaX5DM')"></div>
+            <div class="card__body">
+              <div class="card__head">
+                <p class="card__id">Reporte #67890</p>
+                <div class="card__meta">
+                  <span class="badge badge--info">Recibida</span>
+                  <button class="like like--btn" type="button" aria-pressed="false" aria-label="Apoyar reporte" data-report-id="2">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">18</span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="card__title"><a class="card__link" href="detalle_denuncia.html">Falta de iluminación en el parque</a></h3>
+              <div class="card__row">
+                <span class="card__pin" aria-hidden="true">📍</span>
+                <p class="card__text">Av. Central 3420, altura puente vehicular</p>
+              </div>
+              <div class="card__row">
+                <span class="card__map" aria-hidden="true">🗺️</span>
+                <span class="card__zone">Zona Sur</span>
+              </div>
+              <p class="card__author">Reportado por Carlos López</p>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="card" data-tipo="vandalismo" data-zona="centro" data-estado="en-gestion" data-likes="12">
+            <div class="card__media" style="--img:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1000&q=80')"></div>
+            <div class="card__body">
+              <div class="card__head">
+                <p class="card__id">Reporte #44556</p>
+                <div class="card__meta">
+                  <span class="badge badge--review">En Gestión</span>
+                  <button class="like like--btn" type="button" aria-pressed="false" aria-label="Apoyar reporte" data-report-id="4">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">12</span>
+                  </button>
+                </div>
+              </div>
+              <h3 class="card__title"><a class="card__link" href="detalle_denuncia.html">Graffiti en edificio histórico</a></h3>
+              <div class="card__row">
+                <span class="card__pin" aria-hidden="true">📍</span>
+                <p class="card__text">Calle Histórica 789, frente a la catedral</p>
+              </div>
+              <div class="card__row">
+                <span class="card__map" aria-hidden="true">🗺️</span>
+                <span class="card__zone">Zona Centro</span>
+              </div>
+              <p class="card__author">Reportado por Miguel Torres</p>
+            </div>
+          </article>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <nav class="site-footer__nav" aria-label="Legal">
+        <a class="site-footer__link" href="#">Contacto</a>
+        <a class="site-footer__link" href="#">Privacidad</a>
+        <a class="site-footer__link" href="#">Términos de Uso</a>
+      </nav>
+      <p class="site-footer__copy">© 2024 CityConnect. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- JS separado -->
+<script src="../js/ver_denuncias.js" defer></script>
+</body>
+</html>

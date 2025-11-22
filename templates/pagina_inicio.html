@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MuniDenuncia</title>
+
+  <!-- Fuente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+
+  <!-- CSS BEM -->
+  <link rel="stylesheet" href="../css/munidenuncia.css"/>
+</head>
+<body class="theme theme--light">
+  <div class="layout">
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="site-header__inner container">
+        <div class="site-header__brand">
+          <a href="pagina_inicio.html" class="brand">
+            <span class="brand__logo" aria-hidden="true">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="brand__logo-svg">
+                <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span class="brand__name">MuniDenuncia</span>
+          </a>
+        </div>
+
+        <!-- Igual que 'hidden md:flex' de tu versión -->
+        <nav class="site-header__nav nav nav--tw">
+          <a href="pagina_inicio.html" class="nav__link nav__link--active">Inicio</a>
+          <a href="ver_denuncias.html" class="nav__link">Denuncias</a>
+          <a href="seguimiento_personal.html" class="nav__link">Mi Seguimiento</a>
+        </nav>
+
+        <div class="site-header__actions">
+          <button class="button button--outline">Iniciar Sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+      <!-- Hero (URL original restaurada) -->
+      <section class="hero" style="--hero-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMhsPha3L9nrJzeBl_VeQNcjVlKb4s3rey3OhFTFdWlklkTVaYD7U2BLTZcWWtt5Ao8BqmrC65gmvYcJgnjlrmowLuIzG0DA4pLUPpSu4563CU-OMbVAwF8wiZ2cUL_Q9vrSqsGvI61qdKxvFdjsuOt64mpkYf_PtYeXxI3P1Nivj1xaNi9y1ygOH_ryzyqGI2QnzyqWSV0tYViPFhbBQXK5wm6vimg6h5VvARSSFxXap5GaoxShMC5zH3I-WsvMU6Xr5cy4voV2yK')">
+        <div class="hero__overlay"></div>
+        <div class="hero__content container">
+          <h1 class="hero__title">Bienvenido a MuniDenuncia</h1>
+          <p class="hero__subtitle">Reporta problemas urbanos y sigue el progreso de tus denuncias.</p>
+          <div class="hero__cta">
+            <a href="crear_denuncia.html" class="button button--primary button--lg">Crear Denuncia</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Acciones rápidas -->
+      <section class="section section--spacing">
+        <div class="container">
+          <header class="section__header">
+            <h2 class="section__title">Acciones Rápidas</h2>
+          </header>
+          <div class="actions">
+            <a href="ver_denuncias.html" class="button button--primary actions__btn">Ver Denuncias</a>
+            <a href="seguimiento_personal.html" class="button button--ghost actions__btn">Mi Seguimiento</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Denuncias destacadas -->
+      <section class="section section--muted section--spacing">
+        <div class="container">
+          <header class="section__header">
+            <h2 class="section__title">Denuncias Destacadas</h2>
+            <p class="section__subtitle">Las denuncias con más apoyo de la comunidad.</p>
+          </header>
+
+          <div class="grid">
+            <!-- Card 1 -->
+            <article class="card">
+              <div class="card__media" style="--card-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXXT1T1-VKJ2f74L-MAxKLcRKxOmE91kpVkfK_QqEnNUGeKF_tWvlCwCC1Cm6nmfAL5SsBQV8ImDGknNb05aBmxamqqtbq9FBA_Hdu8ZlsImI7Q3Lq1m0CsguNb2sJNhldYt_yzKDOVc9Pw0PKqqXrvZ1sAukGAn2Jg_mybeHVisv3uwbs7EbkOo-tpFQw7CsK2JS3iy-vn0UcIJdDQzL83C7bvj3k3KKCLs5uOmbKzzwGMnc2WZiT3-RqDcQBqTtttjfkE7t72mVF')"></div>
+              <div class="card__body">
+                <div class="card__topline">
+                  <p class="card__tag">Reporte #12345</p>
+                  <button class="like like--btn" data-report-id="1" aria-pressed="false">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">24</span>
+                  </button>
+                </div>
+
+                <h3 class="card__title">Falta de Iluminación en Calle Principal</h3>
+                <div class="card__meta">
+                  <span class="card__meta-emoji" aria-hidden="true">📍</span>
+                  <p class="card__meta-text">Av. Libertador 1250, entre Mitre y San Martín</p>
+                </div>
+                <div class="card__meta card__meta--inline">
+                  <span class="card__meta-emoji" aria-hidden="true">🗺️</span>
+                  <span class="card__zone">Zona Sur</span>
+                </div>
+                <p class="card__author">Reportado por Ana García</p>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="card">
+              <div class="card__media" style="--card-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBjvx5e6dMxi1jFcu7D8TTNmBoOyEoIgKdqJzJcOoyLERYu1-UianSfw6zYpRVB2-0PeWrwaX6vJypnlXyIsjE1vZt4flKPouCcwZ42iFmVZiuy3oXhvTHIkoIpEn-Jch7h_dFgRf43ghqIseOiPUmByE2X3kmx9vJsuVAwKXKMUAqnDcb3E8d93z8OCTISBC7d1X9g5ycNL4CbQXh4YeTzu8TgzEQPOK7Ddpx0wZyoZ-W6zCcav3ZffYnBtVD6CwZ0FQQV9YAaX5DM')"></div>
+              <div class="card__body">
+                <div class="card__topline">
+                  <p class="card__tag">Reporte #67890</p>
+                  <button class="like like--btn" data-report-id="2" aria-pressed="false">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">18</span>
+                  </button>
+                </div>
+
+                <h3 class="card__title">Baches en Avenida Central</h3>
+                <div class="card__meta">
+                  <span class="card__meta-emoji" aria-hidden="true">📍</span>
+                  <p class="card__meta-text">Av. Central 3420, altura puente vehicular</p>
+                </div>
+                <div class="card__meta card__meta--inline">
+                  <span class="card__meta-emoji" aria-hidden="true">🗺️</span>
+                  <span class="card__zone">Zona Norte</span>
+                </div>
+                <p class="card__author">Reportado por Carlos López</p>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="card">
+              <div class="card__media" style="--card-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ52lzDw7GqGuVu1shcqrLfFesqYsKBGwOfsFV1-OtFaZ4RgqfUbeR2ugs_71wVSnttinthA7oU-KZB5ieSwY98MDu-wMhg7A2SHupppNn0Ej7QMUbJ5iSdjpn6F-e6rbUKtWpsAIYue_LO73Pi9VH61jPs5MlshZly94IuGVnFyfemCmIpsTDXymdsWmiVRadjMHWGFfvtNile6D0CnNrwDaRWwe7uPnpuoiajr5mcdDTCucgKPZxpBDtHbHzpZGrU0fgmGTblUIK')"></div>
+              <div class="card__body">
+                <div class="card__topline">
+                  <p class="card__tag">Reporte #11223</p>
+                  <button class="like like--btn" data-report-id="3" aria-pressed="false">
+                    <span class="like__icon" aria-hidden="true">👍</span>
+                    <span class="like__count">31</span>
+                  </button>
+                </div>
+
+                <h3 class="card__title">Acumulación de Basura en Parque</h3>
+                <div class="card__meta">
+                  <span class="card__meta-emoji" aria-hidden="true">📍</span>
+                  <p class="card__meta-text">Parque San Martín, sector juegos infantiles</p>
+                </div>
+                <div class="card__meta card__meta--inline">
+                  <span class="card__meta-emoji" aria-hidden="true">🗺️</span>
+                  <span class="card__zone">Zona Centro</span>
+                </div>
+                <p class="card__author">Reportado por Sofía Martínez</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="site-footer__inner container">
+        <p class="site-footer__copy">© 2024 MuniDenuncia. Todos los derechos reservados.</p>
+        <nav class="site-footer__links">
+          <a href="#" class="site-footer__link">Contacto Municipal</a>
+          <a href="#" class="site-footer__link">Avisos Legales</a>
+        </nav>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JS separado -->
+  <script src="../js/pagina_inicio.js" defer></script>
+</body>
+</html>

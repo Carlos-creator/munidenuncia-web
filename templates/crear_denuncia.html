@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CityConnect - Crear Denuncia</title>
+
+  <!-- Fuente e íconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+
+  <!-- CSS propio (BEM) -->
+  <link rel="stylesheet" href="../css/crear_denuncia.css"/>
+</head>
+<body class="theme theme--light">
+  <div class="layout">
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="site-header__inner container">
+        <!-- IZQUIERDA: marca -->
+        <div class="site-header__brand">
+          <a href="pagina_inicio.html" class="brand">
+            <span class="brand__logo" aria-hidden="true">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="brand__logo-svg">
+                <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span class="brand__name">CityConnect</span>
+          </a>
+        </div>
+
+        <!-- CENTRO: nav centrado, oculto en mobile -->
+        <nav class="nav nav--center nav--md">
+          <a href="pagina_inicio.html" class="nav__link">Inicio</a>
+          <a href="ver_denuncias.html" class="nav__link">Reportes</a>
+          <a href="seguimiento_personal.html" class="nav__link">Mi Cuenta</a>
+        </nav>
+
+        <!-- DERECHA: acciones -->
+        <div class="site-header__actions actions">
+          <button class="icon-button" type="button" aria-label="Notificaciones">
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <div class="avatar" style='--avatar-url: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAShsY4gyQlkLnsv7JN1CvSfK_rNWFWrpkdffCnlQl_uwKJuBs6vTYACKUcNQoQl-33Rr27-1KOb-jXjGbIb2LGnoIG0V1fQXYGma-k4Gmr8ku-Ocqj7R-foaZorQu2JZkwpEFQTczCmXPe-q-VI1hpSp-7wXJ_IUSMPRYQQzZMfdgEkr6-uvmNLcgSEq4cv1KqtU4Ha0viqVp3KFQHY0I8nL136jbVvkKyrvz2vgJCJtxhD9EGTykA7aBAdS4jX1C9_RHC9N-pckNA");'></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="container page">
+        <div class="page__inner page__inner--narrow">
+
+          <!-- Breadcrumb -->
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb__list">
+              <li class="breadcrumb__item">
+                <a href="pagina_inicio.html" class="breadcrumb__link">Inicio</a>
+              </li>
+              <li class="breadcrumb__item">
+                <span class="breadcrumb__sep">/</span>
+                <span class="breadcrumb__current">Crear Denuncia</span>
+              </li>
+            </ol>
+          </nav>
+
+          <!-- Título -->
+          <header class="page-header">
+            <h1 class="page-header__title">Crear Nueva Denuncia</h1>
+            <p class="page-header__subtitle">Comparta los detalles de su reporte para que podamos ayudarle de la mejor manera.</p>
+          </header>
+
+          <!-- Formulario -->
+          <form id="denunciaForm" class="report-form">
+            <!-- Información básica -->
+            <section class="card">
+              <h2 class="card__title">Información Básica</h2>
+
+              <div class="grid grid--2">
+                <div class="field">
+                  <label for="titulo" class="field__label">Título de la Denuncia *</label>
+                  <input type="text" id="titulo" name="titulo" required class="field__control" placeholder="Ej: Bache en la calle principal"/>
+                </div>
+
+                <div class="field">
+                  <label for="categoria" class="field__label">Categoría *</label>
+                  <select id="categoria" name="categoria" required class="field__control">
+                    <option value="">Seleccione una categoría</option>
+                    <option value="infraestructura">Infraestructura</option>
+                    <option value="iluminacion">Iluminación</option>
+                    <option value="limpieza">Limpieza</option>
+                    <option value="vandalismo">Vandalismo</option>
+                    <option value="transito">Tránsito</option>
+                    <option value="otros">Otros</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="descripcion" class="field__label">Descripción *</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required class="field__control" placeholder="Describa detalladamente el problema..."></textarea>
+              </div>
+            </section>
+
+            <!-- Imagen -->
+            <section class="card">
+              <h2 class="card__title">Evidencia Fotográfica</h2>
+
+              <div class="upload">
+                <label for="imagen" class="upload__drop">
+                  <div class="upload__content">
+                    <span class="material-symbols-outlined upload__icon">cloud_upload</span>
+                    <p class="upload__text"><strong>Haga clic para cargar</strong> o arrastre y suelte</p>
+                    <p class="upload__hint">PNG, JPG o JPEG (MAX. 5MB)</p>
+                  </div>
+                  <input id="imagen" type="file" accept="image/*" class="upload__input"/>
+                </label>
+
+                <div id="imagePreview" class="preview preview--hidden">
+                  <div class="preview__frame">
+                    <img id="previewImg" src="" alt="Vista previa" class="preview__img"/>
+                    <button type="button" class="preview__remove" aria-label="Eliminar imagen">
+                      <span class="material-symbols-outlined">close</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Ubicación -->
+            <section class="card">
+              <h2 class="card__title">Ubicación del Problema</h2>
+
+              <div class="field">
+                <label class="field__label">Seleccione la ubicación en el mapa</label>
+                <div id="map" class="map"></div>
+                <div class="map__actions">
+                  <button type="button" class="button button--primary button--sm" id="btnMiUbicacion">
+                    <span class="material-symbols-outlined button__icon">my_location</span>
+                    Mi Ubicación
+                  </button>
+                  <span id="locationStatus" class="map__status"></span>
+                </div>
+              </div>
+
+              <div class="grid grid--2">
+                <div class="field field--full">
+                  <label for="direccion" class="field__label">Dirección *</label>
+                  <input type="text" id="direccion" name="direccion" required class="field__control" placeholder="Ej: Av. Libertador 1250, entre Mitre y San Martín"/>
+                </div>
+
+                <div class="field">
+                  <label for="zona" class="field__label">Zona *</label>
+                  <select id="zona" name="zona" required class="field__control">
+                    <option value="">Seleccione una zona</option>
+                    <option value="centro">Zona Centro</option>
+                    <option value="norte">Zona Norte</option>
+                    <option value="sur">Zona Sur</option>
+                    <option value="este">Zona Este</option>
+                    <option value="oeste">Zona Oeste</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="referencia" class="field__label">Referencia</label>
+                  <input type="text" id="referencia" name="referencia" class="field__control" placeholder="Ej: Frente al banco, al lado del parque"/>
+                </div>
+              </div>
+
+              <!-- Coordenadas ocultas -->
+              <input type="hidden" id="latitud" name="latitud"/>
+              <input type="hidden" id="longitud" name="longitud"/>
+            </section>
+
+            <!-- Acciones -->
+            <div class="form-actions">
+              <button type="button" class="button button--ghost" id="btnCancelar">Cancelar</button>
+              <button type="submit" class="button button--primary">Enviar Denuncia</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="site-footer__inner container">
+        <p class="site-footer__copy">© 2024 CityConnect. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="../js/crear_denuncia.js" defer></script>
+</body>
+</html>

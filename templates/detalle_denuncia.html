@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <title>CityConnect — Detalle del Reporte</title>
+
+  <!-- Fuentes e íconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- CSS propio (BEM) -->
+  <link rel="stylesheet" href="../css/detalle_denuncia.css"/>
+</head>
+<body class="theme theme--light">
+
+<div class="layout">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <div class="site-header__brand">
+        <a href="pagina_inicio.html" class="brand">
+          <span class="brand__logo" aria-hidden="true">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="brand__logo-svg">
+              <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="brand__name">CityConnect</span>
+        </a>
+      </div>
+
+      <nav class="nav nav--center nav--md">
+        <a class="nav__link" href="pagina_inicio.html">Inicio</a>
+        <a class="nav__link" href="ver_denuncias.html">Reportes</a>
+        <a class="nav__link" href="seguimiento_personal.html">Mi Perfil</a>
+      </nav>
+
+      <div class="site-header__actions actions">
+        <button class="icon-button" type="button" aria-label="Notificaciones">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <div class="avatar" style='--avatar-url: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnbOUN99sXM9ihdVDUJkP7ChABcLk2rv7e3xmk8LcG_CeNtTq4DGwg_kx3czRKU17eOY8jKUnAXGCASjeeoN0wXSJPXcY6eWoyfQaWuAGq4P0oZX8DKMBpjPR9J9LvRhDW1TjAnk5bre7EepN_4uWOCuaj8deP3v6-M8SfG8equpdUVJ6PiPySL1X2uNmv-Q78sBVRThk0tgB_BAGy9ev3DZSPmMaaN_-9D7rwILxy8WJEjMVM06LP5IkyMD4KhBEqQXkYEfOFeKyQ");'></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="container page">
+      <div class="page__inner page__inner--wide">
+
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item">
+              <a href="ver_denuncias.html" class="breadcrumb__link">Reportes</a>
+            </li>
+            <li class="breadcrumb__item">
+              <span class="breadcrumb__sep">›</span>
+              <span class="breadcrumb__current">Detalle del Reporte</span>
+            </li>
+          </ol>
+        </nav>
+
+        <section class="card card--padded">
+          <div class="card__header">
+            <div class="card__titlecol">
+              <span class="badge badge--info" id="estadoBadge">EN PROCESO</span>
+              <h1 class="card__title" id="tituloReporte" data-report-id="12345">Reporte #12345</h1>
+              <p class="card__subtitle" id="direccionReporte">Calle Principal, esquina con Avenida Central</p>
+            </div>
+            <div class="card__meta">
+              <span class="material-symbols-outlined card__meta-icon">thumb_up</span>
+              <span class="card__meta-text">
+                <strong id="likesCount">15</strong> Apoyos
+              </span>
+            </div>
+          </div>
+
+          <!-- Galería -->
+          <div class="gallery gallery--2">
+            <div class="ratio ratio--16x9">
+              <div class="media" style='--img:url("https://lh3.googleusercontent.com/aida-public/AB6AXuDRcg0_m6mi0DETGOfJoDLc6z4PqLCfOe-qHIoWcXvycOkEqzvRjqprEi_aMigRGrRVXRS68ifR6kdAeYi6zbWTsymRSqLpP9ecPUNa24QVFBDh1rngOuWF2CvRFrNECjtlpZKj9C_mef7EJnrLne-lhqq1lp0pOlAOQN2AXXPsP9M9xPpwwQzQIf9gpC4BCl7K-lh2FOP3vaX21GMDsW_5ZQf3F1hOWgV6OT26mQp_uHw3LjfQdGT1eKPhPUp5E9N9a4tn-50zMlex");'></div>
+            </div>
+            <div class="ratio ratio--16x9">
+              <div class="media" style='--img:url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfXeAKXDoRF679CNLwec2GCcig76l-tD8UZSS-Y9AKUHufTjP57qNwWNck6M6dxRxKl_KEOa0vvwvVKrutzRpGoPYVqU8KgMXt20x-ql-XIRFnCdHYlFEJWD9nqWAdr7UwFntrDrWbTcVLT1j731yf0nVq6Kax5lm0ypl8quJ8uBLzElJAi8esK2NKUZgirYxivxLYfQSpdbZL3cFcKnyIA2u94w4l2cTpZqq_VqLdvNMIyY9Gp_7crKsZi67tY874gt6EOcUWVnlN");'></div>
+            </div>
+          </div>
+
+          <!-- Detalles -->
+          <div class="card__body">
+            <h2 class="card__section-title">Detalles del Reporte</h2>
+            <div class="divider"></div>
+            <dl class="description">
+              <div class="description__row">
+                <dt class="description__term">Descripción</dt>
+                <dd class="description__def" id="descripcionReporte">
+                  Un gran bache en la esquina de la Calle Principal y la Avenida Central representa un peligro
+                  para los conductores y peatones. Se solicita reparación urgente.
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- CTA -->
+          <div class="card__footer">
+            <button class="button button--primary" id="likeBtn" aria-pressed="false">
+              <span class="material-symbols-outlined button__icon">thumb_up</span>
+              Apoyar Reporte
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <p class="site-footer__copy">© 2024 CityConnect. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</div>
+
+<!-- Script de funcionalidad -->
+<script src="../js/detalle_denuncia.js" defer></script>
+</body>
+</html>

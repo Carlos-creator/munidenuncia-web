@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CityConnect — Mis Reportes</title>
+
+  <!-- Fuentes / Iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/seguimiento_personal.css"/>
+
+  <style>
+    /* Solo para los símbolos de Google (puedes moverlo a tu .css si prefieres) */
+    .material-symbols-outlined{
+      font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+    }
+  </style>
+</head>
+
+<body class="theme theme--light">
+<div class="layout">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <!-- marca -->
+      <div class="site-header__brand">
+        <a href="pagina_inicio.html" class="brand">
+          <span class="brand__logo" aria-hidden="true">
+            <svg class="brand__logo-svg" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="brand__name">CityConnect</span>
+        </a>
+      </div>
+
+      <!-- nav centrado (oculto en móvil) -->
+      <nav class="nav nav--center nav--md">
+        <a class="nav__link" href="pagina_inicio.html">Inicio</a>
+        <a class="nav__link nav__link--active" href="ver_denuncias.html">Reportes</a>
+        <a class="nav__link" href="seguimiento_personal.html">Mi Cuenta</a>
+      </nav>
+
+      <!-- acciones derecha -->
+      <div class="site-header__actions actions">
+        <button class="icon-button" type="button" aria-label="Notificaciones">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <div class="avatar" style='--avatar-url: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAShsY4gyQlkLnsv7JN1CvSfK_rNWFWrpkdffCnlQl_uwKJuBs6vTYACKUcNQoQl-33Rr27-1KOb-jXjGbIb2LGnoIG0V1fQXYGma-k4Gmr8ku-Ocqj7R-foaZorQu2JZkwpEFQTczCmXPe-q-VI1hpSp-7wXJ_IUSMPRYQQzZMfdgEkr6-uvmNLcgSEq4cv1KqtU4Ha0viqVp3KFQHY0I8nL136jbVvkKyrvz2vgJCJtxhD9EGTykA7aBAdS4jX1C9_RHC9N-pckNA");'></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="container page">
+      <div class="page__inner page__inner--narrow">
+
+        <header class="page-header">
+          <div class="page-header__grid">
+            <div class="page-header__text">
+              <h1 class="page-header__title">Mis Reportes</h1>
+              <p class="page-header__subtitle">Aquí puedes ver el estado de todas tus denuncias.</p>
+            </div>
+
+            <!-- CTA desktop -->
+            <a href="crear_denuncia.html" class="button button--primary button--lg page-header__cta">
+              <span class="button__icon">+</span>
+              Crear Denuncia
+            </a>
+          </div>
+        </header>
+
+        <!-- Lista de reportes -->
+        <section id="reportes-container" class="reports-list">
+          <!-- tarjetas generadas por JS -->
+        </section>
+
+        <!-- Estado vacío -->
+        <section id="no-reportes" class="empty-state empty-state--hidden">
+          <div class="empty-state__emoji" aria-hidden="true">📋</div>
+          <h3 class="empty-state__title">No tienes reportes aún</h3>
+          <p class="empty-state__text">Crea tu primera denuncia para comenzar a hacer seguimiento.</p>
+          <a href="crear_denuncia.html" class="button button--primary button--md">
+            <span class="button__icon">+</span>
+            Crear Primera Denuncia
+          </a>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FAB móvil -->
+  <a href="crear_denuncia.html" class="fab">
+    <span class="fab__icon">+</span>
+    <span class="fab__label">Crear Denuncia</span>
+  </a>
+
+  <!-- Footer simple -->
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <p class="site-footer__copy">© 2024 CityConnect. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- JS separado -->
+<script src="../js/seguimiento_personal.js" defer></script>
+</body>
+</html>

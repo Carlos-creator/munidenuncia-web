@@ -1,0 +1,15 @@
+/* =========================
+   PÁGINA DE INICIO - Estilos específicos
+   Este archivo se importa al final para sobrescribir otros estilos
+========================= */
+
+/* Estilos para las tarjetas de la página de inicio */
+.card__body {
+  padding: 0 ;
+}
+
+.card__title {
+  font-size: 1rem ;
+}
+
+
